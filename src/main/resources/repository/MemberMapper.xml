@@ -6,9 +6,9 @@
 
   <insert id="save" parameterType="Member">
     INSERT INTO Member (
-      member_phone, member_user_name, member_role, member_is_active
+      member_phone, member_username, member_role, member_is_active
     ) VALUES (
-               #{memberPhone}, #{memberUserName}, #{memberRole}, #{memberIsActive}
+               #{memberPhone}, #{memberUsername}, #{memberRole}, #{memberIsActive}
              )
   </insert>
 
@@ -22,7 +22,7 @@
 
   <update id="update" parameterType="Member">
     UPDATE Member
-    SET member_user_name = #{memberUserName},
+    SET member_user_name = #{memberUsername},
         member_role = #{memberRole},
         member_is_active = #{memberIsActive}
     WHERE member_phone = #{memberPhone}
