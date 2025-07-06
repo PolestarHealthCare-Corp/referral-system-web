@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.refsys.adminweb.repository.MemberMapper">
+
+  <insert id="save" parameterType="Member">
+    INSERT INTO Member (
+      member_phone, member_user_name, member_role, member_is_active
+    ) VALUES (
+               #{memberPhone}, #{memberUserName}, #{memberRole}, #{memberIsActive}
+             )
+  </insert>
+
+  <select id="findByPhone" resultType="Member">
+    SELECT * FROM Member WHERE member_phone = #{memberPhone}
+  </select>
+
+  <select id="findAll" resultType="Member">
+    SELECT * FROM Member
+  </select>
+
+  <update id="update" parameterType="Member">
+    UPDATE Member
+    SET member_user_name = #{memberUserName},
+        member_role = #{memberRole},
+        member_is_active = #{memberIsActive}
+    WHERE member_phone = #{memberPhone}
+  </update>
+<!--  <update id="update" parameterType="Member">-->
+<!--    update member-->
+<!--    <set>-->
+<!--      <if test="username != null">-->
+<!--        username = #{username},-->
+<!--      </if>-->
+<!--      <if test="phone != null">-->
+<!--        phone = #{phone},-->
+<!--      </if>-->
+<!--      &lt;!&ndash; ... 기타 항목들 &ndash;&gt;-->
+<!--    </set>-->
+<!--    where id = #{id}-->
+<!--  </update>-->
+
+</mapper>
