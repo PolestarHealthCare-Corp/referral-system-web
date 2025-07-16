@@ -3,8 +3,7 @@ package com.refsys.adminweb.dto.request;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Getter @Setter
 public class HospitalInfoSaveRequest {
 
 	private String memberPhone;
