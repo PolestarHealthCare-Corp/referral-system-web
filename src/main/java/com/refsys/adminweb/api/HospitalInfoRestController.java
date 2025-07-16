@@ -1,4 +1,4 @@
-package com.refsys.adminweb.controller;
+package com.refsys.adminweb.api;
 
 import com.refsys.adminweb.domain.HospitalInfo;
 import com.refsys.adminweb.domain.Member;
