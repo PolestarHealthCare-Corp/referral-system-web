@@ -1,12 +1,13 @@
 package com.refsys.adminweb.dto.request;
 
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Getter @Setter
 public class MemberUpdateRequest {
 
 	private String memberUsername;
-	private int memberRole;
+	private Integer memberRole;
 	private boolean memberIsActive;
 
 }

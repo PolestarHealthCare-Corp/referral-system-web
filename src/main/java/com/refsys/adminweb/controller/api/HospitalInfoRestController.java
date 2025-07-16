@@ -1,4 +1,4 @@
-package com.refsys.adminweb.api;
+package com.refsys.adminweb.controller.api;
 
 import com.refsys.adminweb.domain.HospitalInfo;
 import com.refsys.adminweb.dto.request.HospitalInfoSaveRequest;

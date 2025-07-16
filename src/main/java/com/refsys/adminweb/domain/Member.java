@@ -5,14 +5,16 @@ import com.refsys.adminweb.dto.request.MemberUpdateRequest;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Member {
 
 	private String memberPhone; //01012345678
 	private String memberUsername;
-	private int memberRole; //ADMIN(0), USER(1)
+	private Integer memberRole; //ADMIN(0), USER(1)
 	private boolean memberIsActive; //FALSE(0), TRUE(1)
 	private LocalDateTime memberCreatedAt;
 

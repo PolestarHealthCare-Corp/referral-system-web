@@ -1,8 +1,10 @@
 package com.refsys.adminweb.dto.request;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class HospitalInfoSaveRequest {
 
 	private String memberPhone;

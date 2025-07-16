@@ -11,7 +11,7 @@ public class MemberUpdateResponse {
 
 	private String memberPhone; //01012345678
 	private String memberUsername;
-	private int memberRole; //ADMIN(0), USER(1)
+	private Integer memberRole; //ADMIN(0), USER(1)
 	private boolean memberIsActive; //FALSE(0), TRUE(1)
 	private LocalDateTime memberCreatedAt;
 

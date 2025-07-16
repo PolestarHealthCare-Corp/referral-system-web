@@ -8,20 +8,23 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th>#</th>
+        <th>연락처</th>
         <th>이름</th>
-        <th>도시</th>
-        <th>주소</th>
-        <th>우편번호</th>
+        <th>회원유형</th>
+        <th>사용여부</th>
+        <th>생성일자</th>
       </tr>
       </thead>
       <tbody>
-      <tr th:each="member : ${members}"> <!--왠만하면 DTO 로 뽑아서 사용하자-->
-        <td th:text="${member.id}"></td>
-        <td th:text="${member.username}"></td>
-        <td th:text="${member.address?.city}"></td>
-        <td th:text="${member.address?.street}"></td>
-        <td th:text="${member.address?.zipcode}"></td>
+      <tr th:each="members : ${members}">
+        <td th:text="${@thymeleafFormatter.formatPhone(members.memberPhone)}"></td>
+        <td th:text="${members.memberUsername}"></td>
+        <td th:text="${@thymeleafFormatter.formatRole(members.memberRole)}"></td>
+        <td th:text="${@thymeleafFormatter.formatIsActive(members.memberIsActive)}"></td>
+        <td th:text="${@thymeleafFormatter.formatDateTime(members.memberCreatedAt)}"></td>
+        <td>
+          <a href="연락처" th:href="@{/members/{memberPhone}/edit (memberPhone=${members.memberPhone})}" class="btn btn-primary" role="button">수정</a>
+        </td>
       </tr>
       </tbody>
     </table>
