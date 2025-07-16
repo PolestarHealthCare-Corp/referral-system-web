@@ -3,9 +3,11 @@ package com.refsys.adminweb.domain;
 import com.refsys.adminweb.dto.request.MemberJoinRequest;
 import com.refsys.adminweb.dto.request.MemberUpdateRequest;
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class Member {
 
 	private String memberPhone; //01012345678
@@ -16,7 +18,7 @@ public class Member {
 
 	//생성메서드
 	public static Member createMember(MemberJoinRequest request) {
-		return createMember(request);
+		return new Member(request);
 	}
 	public Member(MemberJoinRequest request) {
 		this.memberPhone = request.getMemberPhone();

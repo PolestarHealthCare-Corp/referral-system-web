@@ -26,7 +26,7 @@
 
   <update id="update" parameterType="Member">
     UPDATE Member
-    SET member_user_name = #{memberUsername},
+    SET member_username = #{memberUsername},
         member_role = #{memberRole},
         member_is_active = #{memberIsActive}
     WHERE member_phone = #{memberPhone}

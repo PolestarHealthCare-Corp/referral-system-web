@@ -2,7 +2,6 @@ package com.refsys.adminweb.repository;
 
 import com.refsys.adminweb.domain.Member;
 import java.util.List;
-import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
