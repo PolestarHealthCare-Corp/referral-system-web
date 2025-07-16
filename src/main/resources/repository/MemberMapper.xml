@@ -12,6 +12,10 @@
              )
   </insert>
 
+  <select id="countByPhone" parameterType="string" resultType="int">
+    SELECT COUNT(*) FROM Member WHERE member_phone = #{memberPhone}
+  </select>
+
   <select id="findByPhone" resultType="Member">
     SELECT * FROM Member WHERE member_phone = #{memberPhone}
   </select>

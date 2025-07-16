@@ -1,9 +1,9 @@
 package com.refsys.adminweb.dto.request;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
-public class MemberSaveRequest {
+@Getter
+public class MemberJoinRequest {
 
 	private String memberPhone; //01012345678
 	private String memberUsername;

@@ -12,9 +12,14 @@ public class MemberRepository {
 
 	private final MemberMapper mapper;
 
-	public void save(Member member) {
+	public Member saveMember(Member member) {
 		mapper.save(member);
+		return member;
 	} //TODO save 시 생성시간 null 로 들어감 스프링에서 시간을 입력해야하나
+
+	public int countByPhone(String phone) {
+		return mapper.countByPhone(phone);
+	}
 
 	//TODO Optional 동작 테스트 필요
 	public Optional<Member> findByPhone(String phone) {
@@ -25,8 +30,9 @@ public class MemberRepository {
 		return mapper.findAll();
 	}
 
-	public void updateByMember(Member member) {
+	public Member updateMember(Member member) {
 		mapper.update(member);
+		return member;
 	}
 
 }

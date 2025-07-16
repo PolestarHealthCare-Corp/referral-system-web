@@ -1,12 +1,8 @@
 package com.refsys.adminweb.service;
 
 import com.refsys.adminweb.domain.HospitalInfo;
-import com.refsys.adminweb.domain.Member;
 import com.refsys.adminweb.dto.request.HospitalInfoSaveRequest;
-import com.refsys.adminweb.dto.request.MemberSaveRequest;
 import com.refsys.adminweb.repository.HospitalInfoRepository;
-import com.refsys.adminweb.repository.MemberRepository;
-import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -10,6 +10,8 @@ public interface MemberMapper {
 
 	void save(Member member);
 
+	int countByPhone(String phone);
+
 	Member findByPhone(String phone);
 
 	List<Member> findAll(); //TODO 파라미터를 넘겨서 동적 검색 구현

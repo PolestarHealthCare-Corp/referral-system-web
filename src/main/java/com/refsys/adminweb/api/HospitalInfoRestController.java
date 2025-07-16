@@ -1,11 +1,8 @@
 package com.refsys.adminweb.api;
 
 import com.refsys.adminweb.domain.HospitalInfo;
-import com.refsys.adminweb.domain.Member;
 import com.refsys.adminweb.dto.request.HospitalInfoSaveRequest;
-import com.refsys.adminweb.dto.request.MemberSaveRequest;
 import com.refsys.adminweb.service.HospitalInfoService;
-import com.refsys.adminweb.service.MemberService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
