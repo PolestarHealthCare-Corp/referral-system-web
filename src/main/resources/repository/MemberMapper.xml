@@ -20,8 +20,56 @@
     SELECT * FROM Member WHERE member_phone = #{memberPhone}
   </select>
 
-  <select id="findAll" resultType="Member">
+  <select id="findAll" parameterType="com.refsys.adminweb.dto.request.MemberSearchCond" resultType="Member">
     SELECT * FROM Member
+    <where>
+      <if test="memberPhone != null and memberPhone != ''">
+        AND member_phone LIKE CONCAT('%', #{memberPhone}, '%')
+      </if>
+      <if test="memberUsername != null and memberUsername != ''">
+        AND member_username LIKE CONCAT('%', #{memberUsername}, '%')
+      </if>
+      <if test="memberRole != null">
+        AND member_role = #{memberRole}
+      </if>
+      <if test="memberIsActive != null">
+        AND member_is_active = #{memberIsActive}
+      </if>
+      <if test="createdAtStart != null">
+        AND CAST(member_created_at AS DATE) &gt;= CAST(#{createdAtStart} AS DATE)
+      </if>
+      <if test="createdAtEnd != null">
+        AND CAST(member_created_at AS DATE) &lt;= CAST(#{createdAtEnd} AS DATE)
+      </if>
+      --H2
+<!--      <if test="createdAtEnd != null">-->
+<!--        AND member_created_at &lt; DATEADD('DAY', 1, #{createdAtEnd})-->
+<!--      </if>-->
+      --SQL Server
+<!--      <if test="createdAtEnd != null">-->
+<!--        AND member_created_at &lt; DATEADD(DAY, 1, #{createdAtEnd})-->
+<!--      </if>-->
+    </where>
+    <choose>
+      <when test="sortBy != null and sortBy != ''">
+        ORDER BY
+        <choose>
+          <when test="sortBy == 'memberPhone'">member_phone</when>
+          <when test="sortBy == 'memberUsername'">member_username</when>
+          <when test="sortBy == 'memberRole'">member_role</when>
+          <when test="sortBy == 'memberIsActive'">member_is_active</when>
+          <when test="sortBy == 'memberCreatedAt'">member_created_at</when>
+          <otherwise>member_created_at</otherwise>
+        </choose>
+        <choose>
+          <when test="sortDir == 'asc'">ASC</when>
+          <otherwise>DESC</otherwise>
+        </choose>
+      </when>
+      <otherwise>
+        ORDER BY member_created_at DESC
+      </otherwise>
+    </choose>
   </select>
 
   <update id="update" parameterType="Member">
@@ -31,18 +79,5 @@
         member_is_active = #{memberIsActive}
     WHERE member_phone = #{memberPhone}
   </update>
-<!--  <update id="update" parameterType="Member">-->
-<!--    update member-->
-<!--    <set>-->
-<!--      <if test="username != null">-->
-<!--        username = #{username},-->
-<!--      </if>-->
-<!--      <if test="phone != null">-->
-<!--        phone = #{phone},-->
-<!--      </if>-->
-<!--      &lt;!&ndash; ... 기타 항목들 &ndash;&gt;-->
-<!--    </set>-->
-<!--    where id = #{id}-->
-<!--  </update>-->
 
 </mapper>

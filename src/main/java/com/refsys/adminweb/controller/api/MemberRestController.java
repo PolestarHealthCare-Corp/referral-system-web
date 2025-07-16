@@ -2,6 +2,7 @@ package com.refsys.adminweb.controller.api;
 
 import com.refsys.adminweb.dto.Response;
 import com.refsys.adminweb.dto.request.MemberJoinRequest;
+import com.refsys.adminweb.dto.request.MemberSearchCond;
 import com.refsys.adminweb.dto.request.MemberUpdateRequest;
 import com.refsys.adminweb.dto.response.MemberJoinResponse;
 import com.refsys.adminweb.dto.response.MemberResponse;
@@ -48,8 +49,8 @@ public class MemberRestController {
 
 	//회원동적검색
 	@GetMapping
-	public ResponseEntity<Response<List<MemberResponse>>> findAll() {
-		List<MemberResponse> result = memberService.findAll();
+	public ResponseEntity<Response<List<MemberResponse>>> findAll(@RequestBody MemberSearchCond condition) {
+		List<MemberResponse> result = memberService.findAll(condition);
 		return ResponseEntity.ok().body(Response.success(result));
 	}
 

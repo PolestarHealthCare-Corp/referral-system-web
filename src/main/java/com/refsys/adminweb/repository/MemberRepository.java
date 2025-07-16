@@ -1,6 +1,7 @@
 package com.refsys.adminweb.repository;
 
 import com.refsys.adminweb.domain.Member;
+import com.refsys.adminweb.dto.request.MemberSearchCond;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +27,8 @@ public class MemberRepository {
 		return Optional.ofNullable(mapper.findByPhone(phone)); //TODO Null 예외 처리 필요
 	}
 
-	public List<Member> findAll() {
-		return mapper.findAll();
+	public List<Member> findAll(MemberSearchCond condition) {
+		return mapper.findAll(condition);
 	}
 
 	public Member updateMember(Member member) {

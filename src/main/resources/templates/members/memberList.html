@@ -5,6 +5,40 @@
 <div class="container">
   <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
   <div>
+    <form th:object="${condition}" class="form-inline mb-4">
+      <div class="form-group mb-2 mr-2">
+        <label th:for="memberPhone">연락처</label>
+        <input type="text" th:field="*{memberPhone}" class="form-control" placeholder="연락처"/>
+      </div>
+      <div class="form-group mb-2 mr-2">
+        <label th:for="memberUsername">이름</label>
+        <input type="text" th:field="*{memberUsername}" class="form-control" placeholder="이름"/>
+      </div>
+      <div class="form-group mb-2 mr-2">
+        <select th:field="*{memberRole}" class="form-control">
+          <option value="">회원유형</option>
+          <option value="0">관리자</option>
+          <option value="1">일반회원</option>
+        </select>
+      </div>
+      <div class="form-group mb-2 mr-2">
+        <select th:field="*{memberIsActive}" class="form-control">
+          <option value="">사용여부</option>
+          <option value="true">사용</option>
+          <option value="false">미사용</option>
+        </select>
+      </div>
+      <div class="form-group mb-2 mr-2">
+        <label th:for="createdAtStart">시작날짜</label>
+        <input type="date" th:field="*{createdAtStart}" class="form-control"/>
+      </div>
+      <div class="form-group mb-2 mr-2">
+        <label th:for="createdAtEnd">종료날짜</label>
+        <input type="date" th:field="*{createdAtEnd}" class="form-control"/>
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">검색</button>
+    </form>
+
     <table class="table table-striped">
       <thead>
       <tr>

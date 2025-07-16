@@ -1,6 +1,7 @@
 package com.refsys.adminweb.controller;
 
 import com.refsys.adminweb.dto.request.MemberJoinRequest;
+import com.refsys.adminweb.dto.request.MemberSearchCond;
 import com.refsys.adminweb.dto.request.MemberUpdateRequest;
 import com.refsys.adminweb.dto.response.MemberResponse;
 import com.refsys.adminweb.service.MemberService;
@@ -44,9 +45,9 @@ public class MemberController {
 	}
 
 	@GetMapping
-	public String list(Model model) {
+	public String list(@ModelAttribute("condition") MemberSearchCond condition, Model model) {
 
-		List<MemberResponse> members = memberService.findAll();
+		List<MemberResponse> members = memberService.findAll(condition);
 		model.addAttribute("members", members);
 		return "members/memberList";
 	}

@@ -15,7 +15,7 @@ public class Member {
 	private String memberPhone; //01012345678
 	private String memberUsername;
 	private Integer memberRole; //ADMIN(0), USER(1)
-	private boolean memberIsActive; //FALSE(0), TRUE(1)
+	private Boolean memberIsActive; //FALSE(0), TRUE(1)
 	private LocalDateTime memberCreatedAt;
 
 	//생성메서드
@@ -33,6 +33,6 @@ public class Member {
 	public void update(MemberUpdateRequest request) {
 		this.memberUsername = request.getMemberUsername();
 		this.memberRole = request.getMemberRole();
-		this.memberIsActive = request.isMemberIsActive();
+		this.memberIsActive = request.getMemberIsActive();
 	}
 }

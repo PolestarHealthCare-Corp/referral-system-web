@@ -26,7 +26,7 @@ public class ThymeleafFormatter {
 
 	public String formatDateTime(LocalDateTime time) {
 		if (time == null) return "";
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 a hh시 mm분 ss초");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 a HH시 mm분 ss초");
 		return time.format(formatter);
 	}
 }

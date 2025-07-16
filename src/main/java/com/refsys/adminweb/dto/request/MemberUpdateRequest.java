@@ -8,6 +8,6 @@ public class MemberUpdateRequest {
 
 	private String memberUsername;
 	private Integer memberRole;
-	private boolean memberIsActive;
+	private Boolean memberIsActive;
 
 }

@@ -2,6 +2,7 @@ package com.refsys.adminweb.service;
 
 import com.refsys.adminweb.domain.Member;
 import com.refsys.adminweb.dto.request.MemberJoinRequest;
+import com.refsys.adminweb.dto.request.MemberSearchCond;
 import com.refsys.adminweb.dto.request.MemberUpdateRequest;
 import com.refsys.adminweb.dto.response.MemberJoinResponse;
 import com.refsys.adminweb.dto.response.MemberResponse;
@@ -38,8 +39,8 @@ public class MemberService {
 	}
 
 	//TODO 동적 검색 구현, MemberSearch 파라미터 전달, mapper, repository 변경 예정
-	public List<MemberResponse> findAll() {
-		return memberRepository.findAll().stream()
+	public List<MemberResponse> findAll(MemberSearchCond condition) {
+		return memberRepository.findAll(condition).stream()
 				.map(member -> MemberResponse.from(member))
 				.collect(Collectors.toList());
 	}
