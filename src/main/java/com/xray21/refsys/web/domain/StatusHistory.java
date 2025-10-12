@@ -7,9 +7,9 @@ public class StatusHistory {
 
 	private Long status_id;
 	private Long referral_id;
-	private String approval_type;
+	private String approval_type; //10(접수), 20(담당자확인), 31(계약성공), 32(계약보류)
 	private String comment;
-	private String use_yn;
+	private String use_yn; //Y, N
 	private LocalDateTime created_date_time;
 	private String created_by; //변경자 ID
 	private String created_by_name; //변경자 이름

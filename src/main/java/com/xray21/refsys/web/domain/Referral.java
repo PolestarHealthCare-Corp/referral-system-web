@@ -20,8 +20,10 @@ public class Referral {
 	private Integer mr_count;
 	private Integer mg_count;
 	private String hospital_memo;
-	private String approval_type; //enum 변경 고려
-	private String use_yn; //enum 변경 고려
+	//TODO enum 변경 고려
+	private String approval_type; //10(접수), 20(담당자확인), 31(계약성공), 32(계약보류)
+	//TODO enum 변경 고려
+	private String use_yn; //Y, N
 	private LocalDateTime create_date_time;
 	private String created_by;
 	private LocalDateTime update_date_time;

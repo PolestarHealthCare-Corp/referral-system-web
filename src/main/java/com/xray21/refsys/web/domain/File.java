@@ -9,8 +9,10 @@ public class File {
 	private Long referral_id;
 	private String file_name;
 	private String file_path;
-	private String file_type;
-	private String use_yn;
+	//TODO enum 변경 고려
+	private String file_type; //10(JPG/JPEG), 11(PNG), 20(PDF), 30(DOC), 31(DOCX), 40(XLS), 41(XLSX), 50(PPT), 51(PPTX), 60(HWP), 99(ETC)
+	//TODO enum 변경 고려
+	private String use_yn; //Y, N
 	private LocalDateTime created_date_time;
 	private String created_by;
 	private LocalDateTime update_date_time;
