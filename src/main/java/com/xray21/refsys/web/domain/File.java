@@ -5,115 +5,115 @@ import java.time.LocalDateTime;
 /** 첨부파일 **/
 public class File {
 
-	private Long file_id;
-	private Long referral_id;
-	private String file_name;
-	private String file_path;
+	private Long fileId;
+	private Long referralId;
+	private String fileName;
+	private String filePath;
 	//TODO enum 변경 고려
-	private String file_type; //10(JPG/JPEG), 11(PNG), 20(PDF), 30(DOC), 31(DOCX), 40(XLS), 41(XLSX), 50(PPT), 51(PPTX), 60(HWP), 99(ETC)
+	private String fileType; //10(JPG/JPEG), 11(PNG), 20(PDF), 30(DOC), 31(DOCX), 40(XLS), 41(XLSX), 50(PPT), 51(PPTX), 60(HWP), 99(ETC)
 	//TODO enum 변경 고려
-	private String use_yn; //Y, N
-	private LocalDateTime created_date_time;
-	private String created_by;
-	private LocalDateTime update_date_time;
-	private String updated_by;
+	private String useYn; //Y, N
+	private LocalDateTime createdDateTime;
+	private String createdBy;
+	private LocalDateTime updateDateTime;
+	private String updatedBy;
 
 	public File() {
 	}
 
-	public File(Long file_id, Long referral_id, String file_name, String file_path,
-			String file_type,
-			String use_yn, LocalDateTime created_date_time, String created_by,
-			LocalDateTime update_date_time, String updated_by) {
-		this.file_id = file_id;
-		this.referral_id = referral_id;
-		this.file_name = file_name;
-		this.file_path = file_path;
-		this.file_type = file_type;
-		this.use_yn = use_yn;
-		this.created_date_time = created_date_time;
-		this.created_by = created_by;
-		this.update_date_time = update_date_time;
-		this.updated_by = updated_by;
+	public File(Long fileId, Long referralId, String fileName, String filePath,
+				String fileType,
+				String useYn, LocalDateTime createdDateTime, String createdBy,
+				LocalDateTime updateDateTime, String updatedBy) {
+		this.fileId = fileId;
+		this.referralId = referralId;
+		this.fileName = fileName;
+		this.filePath = filePath;
+		this.fileType = fileType;
+		this.useYn = useYn;
+		this.createdDateTime = createdDateTime;
+		this.createdBy = createdBy;
+		this.updateDateTime = updateDateTime;
+		this.updatedBy = updatedBy;
 	}
 
-	public Long getFile_id() {
-		return file_id;
+	public Long getFileId() {
+		return fileId;
 	}
 
-	public void setFile_id(Long file_id) {
-		this.file_id = file_id;
+	public void setFileId(Long fileId) {
+		this.fileId = fileId;
 	}
 
-	public Long getReferral_id() {
-		return referral_id;
+	public Long getReferralId() {
+		return referralId;
 	}
 
-	public void setReferral_id(Long referral_id) {
-		this.referral_id = referral_id;
+	public void setReferralId(Long referralId) {
+		this.referralId = referralId;
 	}
 
-	public String getFile_name() {
-		return file_name;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public void setFile_name(String file_name) {
-		this.file_name = file_name;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
-	public String getFile_path() {
-		return file_path;
+	public String getFilePath() {
+		return filePath;
 	}
 
-	public void setFile_path(String file_path) {
-		this.file_path = file_path;
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 
-	public String getFile_type() {
-		return file_type;
+	public String getFileType() {
+		return fileType;
 	}
 
-	public void setFile_type(String file_type) {
-		this.file_type = file_type;
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
 	}
 
-	public String getUse_yn() {
-		return use_yn;
+	public String getUseYn() {
+		return useYn;
 	}
 
-	public void setUse_yn(String use_yn) {
-		this.use_yn = use_yn;
+	public void setUseYn(String useYn) {
+		this.useYn = useYn;
 	}
 
-	public LocalDateTime getCreated_date_time() {
-		return created_date_time;
+	public LocalDateTime getCreatedDateTime() {
+		return createdDateTime;
 	}
 
-	public void setCreated_date_time(LocalDateTime created_date_time) {
-		this.created_date_time = created_date_time;
+	public void setCreatedDateTime(LocalDateTime createdDateTime) {
+		this.createdDateTime = createdDateTime;
 	}
 
-	public String getCreated_by() {
-		return created_by;
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreated_by(String created_by) {
-		this.created_by = created_by;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public LocalDateTime getUpdate_date_time() {
-		return update_date_time;
+	public LocalDateTime getUpdateDateTime() {
+		return updateDateTime;
 	}
 
-	public void setUpdate_date_time(LocalDateTime update_date_time) {
-		this.update_date_time = update_date_time;
+	public void setUpdateDateTime(LocalDateTime updateDateTime) {
+		this.updateDateTime = updateDateTime;
 	}
 
-	public String getUpdated_by() {
-		return updated_by;
+	public String getUpdatedBy() {
+		return updatedBy;
 	}
 
-	public void setUpdated_by(String updated_by) {
-		this.updated_by = updated_by;
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 }

@@ -5,53 +5,53 @@ import java.time.LocalDateTime;
 /** 관리자 상태 변경 이력 **/
 public class StatusHistory {
 
-	private Long status_id;
-	private Long referral_id;
-	private String approval_type; //10(접수), 20(담당자확인), 31(계약성공), 32(계약보류)
+	private Long statusId;
+	private Long referralId;
+	private String approvalType; //10(접수), 20(담당자확인), 31(계약성공), 32(계약보류)
 	private String comment;
-	private String use_yn; //Y, N
-	private LocalDateTime created_date_time;
-	private String created_by; //변경자 ID
+	private String useYn; //Y, N
+	private LocalDateTime createdDateTime;
+	private String createdBy; //변경자 ID
 	private String created_by_name; //변경자 이름
 
 	public StatusHistory() {
 	}
 
-	public StatusHistory(Long status_id, Long referral_id, String approval_type, String comment,
-			String use_yn, String created_by_name, LocalDateTime created_date_time,
-			String created_by) {
-		this.status_id = status_id;
-		this.referral_id = referral_id;
-		this.approval_type = approval_type;
+	public StatusHistory(Long statusId, Long referralId, String approvalType, String comment,
+						 String useYn, String created_by_name, LocalDateTime createdDateTime,
+						 String createdBy) {
+		this.statusId = statusId;
+		this.referralId = referralId;
+		this.approvalType = approvalType;
 		this.comment = comment;
-		this.use_yn = use_yn;
+		this.useYn = useYn;
 		this.created_by_name = created_by_name;
-		this.created_date_time = created_date_time;
-		this.created_by = created_by;
+		this.createdDateTime = createdDateTime;
+		this.createdBy = createdBy;
 	}
 
-	public Long getStatus_id() {
-		return status_id;
+	public Long getStatusId() {
+		return statusId;
 	}
 
-	public void setStatus_id(Long status_id) {
-		this.status_id = status_id;
+	public void setStatusId(Long statusId) {
+		this.statusId = statusId;
 	}
 
-	public Long getReferral_id() {
-		return referral_id;
+	public Long getReferralId() {
+		return referralId;
 	}
 
-	public void setReferral_id(Long referral_id) {
-		this.referral_id = referral_id;
+	public void setReferralId(Long referralId) {
+		this.referralId = referralId;
 	}
 
-	public String getApproval_type() {
-		return approval_type;
+	public String getApprovalType() {
+		return approvalType;
 	}
 
-	public void setApproval_type(String approval_type) {
-		this.approval_type = approval_type;
+	public void setApprovalType(String approvalType) {
+		this.approvalType = approvalType;
 	}
 
 	public String getComment() {
@@ -62,12 +62,12 @@ public class StatusHistory {
 		this.comment = comment;
 	}
 
-	public String getUse_yn() {
-		return use_yn;
+	public String getUseYn() {
+		return useYn;
 	}
 
-	public void setUse_yn(String use_yn) {
-		this.use_yn = use_yn;
+	public void setUseYn(String useYn) {
+		this.useYn = useYn;
 	}
 
 	public String getCreated_by_name() {
@@ -78,19 +78,19 @@ public class StatusHistory {
 		this.created_by_name = created_by_name;
 	}
 
-	public LocalDateTime getCreated_date_time() {
-		return created_date_time;
+	public LocalDateTime getCreatedDateTime() {
+		return createdDateTime;
 	}
 
-	public void setCreated_date_time(LocalDateTime created_date_time) {
-		this.created_date_time = created_date_time;
+	public void setCreatedDateTime(LocalDateTime createdDateTime) {
+		this.createdDateTime = createdDateTime;
 	}
 
-	public String getCreated_by() {
-		return created_by;
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreated_by(String created_by) {
-		this.created_by = created_by;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 }

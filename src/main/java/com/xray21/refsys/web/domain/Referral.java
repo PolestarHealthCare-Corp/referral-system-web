@@ -5,228 +5,228 @@ import java.time.LocalDateTime;
 /** 병원 소개 **/
 public class Referral {
 
-	private Long referral_id;
-	private String user_department;
-	private String user_name;
-	private String user_phone;
-	private String user_password;
-	private String hospital_name;
-	private String hospital_zip_code;
-	private String hospital_address;
-	private String hospital_contact_name;
-	private String hospital_contact_phone;
-	private Integer xray_count;
-	private Integer ct_count;
-	private Integer mr_count;
-	private Integer mg_count;
-	private String hospital_memo;
+	private Long referralId;
+	private String userDepartment;
+	private String userName;
+	private String userPhone;
+	private String userPassword;
+	private String hospitalName;
+	private String hospitalZipCode;
+	private String hospitalAddress;
+	private String hospitalContactName;
+	private String hospitalContactPhone;
+	private Integer xrayCount;
+	private Integer ctCount;
+	private Integer mrCount;
+	private Integer mgCount;
+	private String hospitalMemo;
 	//TODO enum 변경 고려
-	private String approval_type; //10(접수), 20(담당자확인), 31(계약성공), 32(계약보류)
+	private String approvalType; //10(접수), 20(담당자확인), 31(계약성공), 32(계약보류)
 	//TODO enum 변경 고려
-	private String use_yn; //Y, N
-	private LocalDateTime create_date_time;
-	private String created_by;
-	private LocalDateTime update_date_time;
-	private String updated_by;
+	private String useYn; //Y, N
+	private LocalDateTime createDateTime;
+	private String createdBy;
+	private LocalDateTime updateDateTime;
+	private String updatedBy;
 
 	public Referral() {
 	}
 
-	public Referral(Long referral_id, String user_department, String user_name, String user_phone,
-			String user_password, String hospital_name, String hospital_zip_code,
-			String hospital_address, String hospital_contact_name, String hospital_contact_phone,
-			Integer xray_count, Integer ct_count, Integer mr_count, Integer mg_count,
-			String hospital_memo, String approval_type, String use_yn,
-			LocalDateTime create_date_time,
-			String created_by, LocalDateTime update_date_time, String updated_by) {
-		this.referral_id = referral_id;
-		this.user_department = user_department;
-		this.user_name = user_name;
-		this.user_phone = user_phone;
-		this.user_password = user_password;
-		this.hospital_name = hospital_name;
-		this.hospital_zip_code = hospital_zip_code;
-		this.hospital_address = hospital_address;
-		this.hospital_contact_name = hospital_contact_name;
-		this.hospital_contact_phone = hospital_contact_phone;
-		this.xray_count = xray_count;
-		this.ct_count = ct_count;
-		this.mr_count = mr_count;
-		this.mg_count = mg_count;
-		this.hospital_memo = hospital_memo;
-		this.approval_type = approval_type;
-		this.use_yn = use_yn;
-		this.create_date_time = create_date_time;
-		this.created_by = created_by;
-		this.update_date_time = update_date_time;
-		this.updated_by = updated_by;
+	public Referral(Long referralId, String userDepartment, String userName, String userPhone,
+					String userPassword, String hospitalName, String hospitalZipCode,
+					String hospitalAddress, String hospitalContactName, String hospitalContactPhone,
+					Integer xrayCount, Integer ctCount, Integer mrCount, Integer mgCount,
+					String hospitalMemo, String approvalType, String useYn,
+					LocalDateTime createDateTime,
+					String createdBy, LocalDateTime updateDateTime, String updatedBy) {
+		this.referralId = referralId;
+		this.userDepartment = userDepartment;
+		this.userName = userName;
+		this.userPhone = userPhone;
+		this.userPassword = userPassword;
+		this.hospitalName = hospitalName;
+		this.hospitalZipCode = hospitalZipCode;
+		this.hospitalAddress = hospitalAddress;
+		this.hospitalContactName = hospitalContactName;
+		this.hospitalContactPhone = hospitalContactPhone;
+		this.xrayCount = xrayCount;
+		this.ctCount = ctCount;
+		this.mrCount = mrCount;
+		this.mgCount = mgCount;
+		this.hospitalMemo = hospitalMemo;
+		this.approvalType = approvalType;
+		this.useYn = useYn;
+		this.createDateTime = createDateTime;
+		this.createdBy = createdBy;
+		this.updateDateTime = updateDateTime;
+		this.updatedBy = updatedBy;
 	}
 
-	public Long getReferral_id() {
-		return referral_id;
+	public Long getReferralId() {
+		return referralId;
 	}
 
-	public void setReferral_id(Long referral_id) {
-		this.referral_id = referral_id;
+	public void setReferralId(Long referralId) {
+		this.referralId = referralId;
 	}
 
-	public String getUser_department() {
-		return user_department;
+	public String getUserDepartment() {
+		return userDepartment;
 	}
 
-	public void setUser_department(String user_department) {
-		this.user_department = user_department;
+	public void setUserDepartment(String userDepartment) {
+		this.userDepartment = userDepartment;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getUser_phone() {
-		return user_phone;
+	public String getUserPhone() {
+		return userPhone;
 	}
 
-	public void setUser_phone(String user_phone) {
-		this.user_phone = user_phone;
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
 
-	public String getUser_password() {
-		return user_password;
+	public String getUserPassword() {
+		return userPassword;
 	}
 
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 
-	public String getHospital_name() {
-		return hospital_name;
+	public String getHospitalName() {
+		return hospitalName;
 	}
 
-	public void setHospital_name(String hospital_name) {
-		this.hospital_name = hospital_name;
+	public void setHospitalName(String hospitalName) {
+		this.hospitalName = hospitalName;
 	}
 
-	public String getHospital_zip_code() {
-		return hospital_zip_code;
+	public String getHospitalZipCode() {
+		return hospitalZipCode;
 	}
 
-	public void setHospital_zip_code(String hospital_zip_code) {
-		this.hospital_zip_code = hospital_zip_code;
+	public void setHospitalZipCode(String hospitalZipCode) {
+		this.hospitalZipCode = hospitalZipCode;
 	}
 
-	public String getHospital_address() {
-		return hospital_address;
+	public String getHospitalAddress() {
+		return hospitalAddress;
 	}
 
-	public void setHospital_address(String hospital_address) {
-		this.hospital_address = hospital_address;
+	public void setHospitalAddress(String hospitalAddress) {
+		this.hospitalAddress = hospitalAddress;
 	}
 
-	public String getHospital_contact_name() {
-		return hospital_contact_name;
+	public String getHospitalContactName() {
+		return hospitalContactName;
 	}
 
-	public void setHospital_contact_name(String hospital_contact_name) {
-		this.hospital_contact_name = hospital_contact_name;
+	public void setHospitalContactName(String hospitalContactName) {
+		this.hospitalContactName = hospitalContactName;
 	}
 
-	public String getHospital_contact_phone() {
-		return hospital_contact_phone;
+	public String getHospitalContactPhone() {
+		return hospitalContactPhone;
 	}
 
-	public void setHospital_contact_phone(String hospital_contact_phone) {
-		this.hospital_contact_phone = hospital_contact_phone;
+	public void setHospitalContactPhone(String hospitalContactPhone) {
+		this.hospitalContactPhone = hospitalContactPhone;
 	}
 
-	public Integer getXray_count() {
-		return xray_count;
+	public Integer getXrayCount() {
+		return xrayCount;
 	}
 
-	public void setXray_count(Integer xray_count) {
-		this.xray_count = xray_count;
+	public void setXrayCount(Integer xrayCount) {
+		this.xrayCount = xrayCount;
 	}
 
-	public Integer getCt_count() {
-		return ct_count;
+	public Integer getCtCount() {
+		return ctCount;
 	}
 
-	public void setCt_count(Integer ct_count) {
-		this.ct_count = ct_count;
+	public void setCtCount(Integer ctCount) {
+		this.ctCount = ctCount;
 	}
 
-	public Integer getMr_count() {
-		return mr_count;
+	public Integer getMrCount() {
+		return mrCount;
 	}
 
-	public void setMr_count(Integer mr_count) {
-		this.mr_count = mr_count;
+	public void setMrCount(Integer mrCount) {
+		this.mrCount = mrCount;
 	}
 
-	public Integer getMg_count() {
-		return mg_count;
+	public Integer getMgCount() {
+		return mgCount;
 	}
 
-	public void setMg_count(Integer mg_count) {
-		this.mg_count = mg_count;
+	public void setMgCount(Integer mgCount) {
+		this.mgCount = mgCount;
 	}
 
-	public String getHospital_memo() {
-		return hospital_memo;
+	public String getHospitalMemo() {
+		return hospitalMemo;
 	}
 
-	public void setHospital_memo(String hospital_memo) {
-		this.hospital_memo = hospital_memo;
+	public void setHospitalMemo(String hospitalMemo) {
+		this.hospitalMemo = hospitalMemo;
 	}
 
-	public String getApproval_type() {
-		return approval_type;
+	public String getApprovalType() {
+		return approvalType;
 	}
 
-	public void setApproval_type(String approval_type) {
-		this.approval_type = approval_type;
+	public void setApprovalType(String approvalType) {
+		this.approvalType = approvalType;
 	}
 
-	public String getUse_yn() {
-		return use_yn;
+	public String getUseYn() {
+		return useYn;
 	}
 
-	public void setUse_yn(String use_yn) {
-		this.use_yn = use_yn;
+	public void setUseYn(String useYn) {
+		this.useYn = useYn;
 	}
 
-	public LocalDateTime getCreate_date_time() {
-		return create_date_time;
+	public LocalDateTime getCreateDateTime() {
+		return createDateTime;
 	}
 
-	public void setCreate_date_time(LocalDateTime create_date_time) {
-		this.create_date_time = create_date_time;
+	public void setCreateDateTime(LocalDateTime createDateTime) {
+		this.createDateTime = createDateTime;
 	}
 
-	public String getCreated_by() {
-		return created_by;
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreated_by(String created_by) {
-		this.created_by = created_by;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public LocalDateTime getUpdate_date_time() {
-		return update_date_time;
+	public LocalDateTime getUpdateDateTime() {
+		return updateDateTime;
 	}
 
-	public void setUpdate_date_time(LocalDateTime update_date_time) {
-		this.update_date_time = update_date_time;
+	public void setUpdateDateTime(LocalDateTime updateDateTime) {
+		this.updateDateTime = updateDateTime;
 	}
 
-	public String getUpdated_by() {
-		return updated_by;
+	public String getUpdatedBy() {
+		return updatedBy;
 	}
 
-	public void setUpdated_by(String updated_by) {
-		this.updated_by = updated_by;
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 }
