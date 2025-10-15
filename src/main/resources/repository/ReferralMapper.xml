@@ -4,6 +4,62 @@
 
 <mapper namespace="com.xray21.refsys.web.repository.ReferralMapper">
 
+    <!-- 병원소개 등록 -->
+    <insert id="save" parameterType="Referral" useGeneratedKeys="true" keyProperty="referralId">
+        INSERT INTO referral (
+            user_department,
+            user_name,
+            user_phone,
+            user_password,
+            hospital_name,
+            hospital_zip_code,
+            hospital_address,
+            hospital_contact_name,
+            hospital_contact_phone,
+            xray_count,
+            ct_count,
+            mr_count,
+            mg_count,
+            hospital_memo,
+            approval_type,
+            use_yn,
+            create_date_time,
+            created_by,
+            update_date_time,
+            updated_by
+        )
+        VALUES (
+                 #{userDepartment},
+                 #{userName},
+                 #{userPhone},
+                 #{userPassword},
+                 #{hospitalName},
+                 #{hospitalZipCode},
+                 #{hospitalAddress},
+                 #{hospitalContactName},
+                 #{hospitalContactPhone},
+                 #{xrayCount},
+                 #{ctCount},
+                 #{mrCount},
+                 #{mgCount},
+                 #{hospitalMemo},
+                 #{approvalType},
+                 #{useYn},
+                 #{createDateTime},
+                 #{createdBy},
+                 #{updateDateTime},
+                 #{updatedBy}
+               )
+    </insert>
+
+    <!-- 작성자가 소개했던 병원인지 조회 -->
+    <select id="existsByUserPhoneAndHospitalName" resultType="int">
+        SELECT COUNT(*)
+        FROM referral
+        WHERE user_phone = #{userPhone}
+          AND hospital_name = #{hospitalName}
+    </select>
+
     <!-- 병원소개 단건조회 -->
     <select id="findById" parameterType="long" resultType="Referral">
         SELECT

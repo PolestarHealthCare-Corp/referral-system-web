@@ -1,5 +1,6 @@
 package com.xray21.refsys.web.domain;
 
+import com.xray21.refsys.web.dto.request.ReferralSaveRequest;
 import java.time.LocalDateTime;
 
 /** 병원 소개 **/
@@ -20,25 +21,53 @@ public class Referral {
 	private Integer mrCount;
 	private Integer mgCount;
 	private String hospitalMemo;
-	//TODO enum 변경 고려
 	private String approvalType; //10(접수), 20(담당자확인), 31(계약성공), 32(계약보류)
-	//TODO enum 변경 고려
 	private String useYn; //Y, N
 	private LocalDateTime createDateTime;
 	private String createdBy;
 	private LocalDateTime updateDateTime;
 	private String updatedBy;
 
+	//생성메서드
+	public static Referral createReferral(ReferralSaveRequest request) {
+		return new Referral(request);
+	}
+	public Referral(ReferralSaveRequest request) {
+		this.userDepartment = request.getUserDepartment();
+		this.userName = request.getUserName();
+		this.userPhone = request.getUserPhone();
+		this.userPassword = request.getUserPassword();
+		this.hospitalName = request.getHospitalName();
+		this.hospitalZipCode = request.getHospitalZipCode();
+		this.hospitalAddress = request.getHospitalAddress();
+		this.hospitalContactName = request.getHospitalContactName();
+		this.hospitalContactPhone = request.getHospitalContactPhone();
+		this.xrayCount = request.getXrayCount();
+		this.ctCount = request.getCtCount();
+		this.mrCount = request.getMrCount();
+		this.mgCount = request.getMgCount();
+		this.hospitalMemo = request.getHospitalMemo();
+		this.approvalType = AppConstants.RECEIVED;
+		this.useYn = AppConstants.USE;
+		this.createDateTime = LocalDateTime.now();
+		this.createdBy = request.getUserPhone();
+		this.updateDateTime = null;
+		this.updatedBy = null;
+	}
+
+	//생성자
 	public Referral() {
 	}
 
 	public Referral(Long referralId, String userDepartment, String userName, String userPhone,
-					String userPassword, String hospitalName, String hospitalZipCode,
-					String hospitalAddress, String hospitalContactName, String hospitalContactPhone,
-					Integer xrayCount, Integer ctCount, Integer mrCount, Integer mgCount,
-					String hospitalMemo, String approvalType, String useYn,
-					LocalDateTime createDateTime,
-					String createdBy, LocalDateTime updateDateTime, String updatedBy) {
+			String userPassword, String hospitalName, String hospitalZipCode,
+			String hospitalAddress,
+			String hospitalContactName, String hospitalContactPhone, Integer xrayCount,
+			Integer ctCount,
+			Integer mrCount, Integer mgCount, String hospitalMemo, String approvalType,
+			String useYn,
+			LocalDateTime createDateTime, String createdBy, LocalDateTime updateDateTime,
+			String updatedBy) {
 		this.referralId = referralId;
 		this.userDepartment = userDepartment;
 		this.userName = userName;
