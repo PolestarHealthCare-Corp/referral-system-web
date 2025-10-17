@@ -31,8 +31,8 @@ public class MemberRestController {
 
 	//TODO 검증 추가 예정
 
-	//회원가입, 회원추가
-	@PostMapping("/join")
+	// 소개 작성
+	@PostMapping("/ref")
 	public ResponseEntity<Response<MemberJoinResponse>> joinMember(@RequestBody MemberJoinRequest request) {
 		MemberJoinResponse result = memberService.joinMember(request);
 		log.info("회원번호 {}이 가입되었습니다.", request.getMemberPhone());
