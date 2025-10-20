@@ -14,8 +14,23 @@ public class ReferralRepository {
         this.mapper = mapper;
     }
 
+    public Referral saveReferral(Referral referral) {
+        mapper.save(referral);
+        return referral;
+    }
+
+    public int existsByUserPhoneAndHospitalName(String userPhone, String hospitalName) {
+        return mapper.existsByUserPhoneAndHospitalName(userPhone, hospitalName);
+    }
+
     public Optional<Referral> findById(long id) {
         return Optional.ofNullable(mapper.findById(id));
     }
+
+    public Referral updateReferral(Referral referral){
+        mapper.update(referral);
+        return referral;
+    }
+
 
 }

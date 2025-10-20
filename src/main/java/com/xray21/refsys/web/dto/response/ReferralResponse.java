@@ -33,7 +33,13 @@ public class ReferralResponse {
         );
     }
 
-    public ReferralResponse(Long referralId, String userDepartment, String userName, String userPhone, String hospitalName, String hospitalZipCode, String hospitalAddress, String hospitalContactName, String hospitalContactPhone, Integer xrayCount, Integer ctCount, Integer mrCount, Integer mgCount, String hospitalMemo, String approvalType, LocalDateTime createDateTime) {
+    public ReferralResponse(Long referralId, String userDepartment, String userName,
+            String userPhone,
+            String hospitalName, String hospitalZipCode, String hospitalAddress,
+            String hospitalContactName, String hospitalContactPhone, Integer xrayCount,
+            Integer ctCount,
+            Integer mrCount, Integer mgCount, String hospitalMemo, String approvalType,
+            LocalDateTime createDateTime) {
         this.referralId = referralId;
         this.userDepartment = userDepartment;
         this.userName = userName;
@@ -115,5 +121,4 @@ public class ReferralResponse {
     public LocalDateTime getCreateDateTime() {
         return createDateTime;
     }
-
 }
