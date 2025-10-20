@@ -1,0 +1,16 @@
+#notice {
+  grid-column: 1 / -1;
+  background-image: url(../../images/background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section__box {
+  width: 92%;
+  text-align: left;
+}

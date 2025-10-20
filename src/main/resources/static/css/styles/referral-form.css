@@ -1,0 +1,134 @@
+#create__form {
+  grid-column: 1 / -1;
+  margin: 0 auto;
+}
+
+.create__form {
+  margin-top: 2em;
+}
+
+.section__subtitle {
+  margin-top: 2em;
+}
+
+.create__form__row {
+  margin-top: 4em;
+}
+
+.form__row {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1.5em;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+}
+
+.form__row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.eqipment {
+  border-bottom: none;
+  padding-bottom: 6px;
+}
+
+.eqipment:last-child {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1.5em;
+}
+
+.form__row input {
+  justify-content: center;
+  text-align: center;
+}
+
+.form__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  max-width: 600px;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  padding: 2em;
+  margin-top: 2em;
+}
+
+.form__row label {
+  font-weight: 600;
+  text-align: left;
+  color: #333;
+}
+
+.form__row input[type="text"],
+.form__row input[type="tel"] {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form__row input[type="tel"] {
+  width: 100%;
+}
+
+.create__address {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.create__address_search {
+  display: flex;
+  gap: 6px;
+}
+
+.create__address_search input {
+  width: 100px;
+}
+
+.create__phone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 4em;
+}
+
+.btn {
+  width: 200px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn--primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn--primary:hover {
+  background-color: #0069d9;
+}
+
+.btn--secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn--secondary:hover {
+  background-color: #d5d5d5;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
