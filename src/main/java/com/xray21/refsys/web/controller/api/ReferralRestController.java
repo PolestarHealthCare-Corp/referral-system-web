@@ -2,10 +2,13 @@ package com.xray21.refsys.web.controller.api;
 
 import com.xray21.refsys.web.dto.Response;
 import com.xray21.refsys.web.dto.request.ReferralSaveRequest;
+import com.xray21.refsys.web.dto.request.ReferralUpdateRequest;
 import com.xray21.refsys.web.dto.response.ReferralResponse;
 import com.xray21.refsys.web.dto.response.ReferralSaveResponse;
 import com.xray21.refsys.web.service.ReferralService;
 import java.net.URI;
+
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -42,4 +45,13 @@ public class ReferralRestController {
         ReferralResponse result = referralService.findByReferralId(id);
         return ResponseEntity.ok().body(Response.success(result));
     }
+
+    // 병원소개 수정
+    @PostMapping("/{id}")
+    public ResponseEntity<Response<ReferralResponse>> updateReferral(@Valid @PathVariable Long id, @RequestBody ReferralUpdateRequest request) {
+
+        ReferralResponse result = referralService.updateReferral(request, id);
+        return ResponseEntity.ok().body(Response.success(result));
+    }
+    
 }

@@ -11,4 +11,8 @@ public interface ReferralMapper {
     int existsByUserPhoneAndHospitalName(String userPhone, String hospitalName);
 
     Referral findById(Long id);
+
+    void update(Referral referral);
+
+
 }

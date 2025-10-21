@@ -1,0 +1,80 @@
+#referral {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.referral__card {
+  max-width: 92%;
+  display: flex;
+  width: 1200px;
+  flex-direction: column;
+}
+
+.referral__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.referral__style {
+  color: var(--color-main);
+}
+
+.referral__list { 
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 20px;
+}
+
+.referral__1 {
+  padding: 20px;
+  border-radius: 1em;
+}
+
+.referral__right {
+  margin-top: 0.3em;
+}
+
+.referral__1:hover {
+  background-color: #ECF2F6;
+}
+
+.referral__1:hover .referral__tag {
+  border: 1px solid #001b371a;
+}
+
+.referral__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.referral__tag {
+  display: inline-block;
+  background-color: #ECF2F6;
+  border-radius: 2em;
+  padding: 1em;
+  margin-right: 1em;
+}
+
+.referral__row__left { 
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.referral__row__left strong {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.referral__row__left p {
+  font-size: 18px;
+  color: gray;
+}
+
+.referral__eqipment {
+  display: flex;
+  gap: 1em;
+}

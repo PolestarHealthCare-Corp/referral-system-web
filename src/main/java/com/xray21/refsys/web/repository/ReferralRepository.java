@@ -27,4 +27,10 @@ public class ReferralRepository {
         return Optional.ofNullable(mapper.findById(id));
     }
 
+    public Referral updateReferral(Referral referral){
+        mapper.update(referral);
+        return referral;
+    }
+
+
 }

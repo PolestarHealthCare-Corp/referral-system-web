@@ -1,6 +1,8 @@
 package com.xray21.refsys.web.domain;
 
 import com.xray21.refsys.web.dto.request.ReferralSaveRequest;
+import com.xray21.refsys.web.dto.request.ReferralUpdateRequest;
+
 import java.time.LocalDateTime;
 
 /** 병원 소개 **/
@@ -53,6 +55,23 @@ public class Referral {
 		this.createdBy = request.getUserPhone();
 		this.updateDateTime = null;
 		this.updatedBy = null;
+	}
+
+	public void updateFromRequest(ReferralUpdateRequest request) {
+		this.userDepartment = request.getUserDepartment();
+		this.userName = request.getUserName();
+		this.userPhone = request.getUserPhone();
+		this.userPassword = request.getUserPassword();
+		this.hospitalName = request.getHospitalName();
+		this.hospitalZipCode = request.getHospitalZipCode();
+		this.hospitalAddress = request.getHospitalAddress();
+		this.hospitalContactName = request.getHospitalContactName();
+		this.hospitalContactPhone = request.getHospitalContactPhone();
+		this.xrayCount = request.getXrayCount();
+		this.ctCount = request.getCtCount();
+		this.mrCount = request.getMrCount();
+		this.mgCount = request.getMgCount();
+		this.hospitalMemo = request.getHospitalMemo();
 	}
 
 	//생성자
