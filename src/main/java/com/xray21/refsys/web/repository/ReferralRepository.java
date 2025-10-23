@@ -1,6 +1,8 @@
 package com.xray21.refsys.web.repository;
 
 import com.xray21.refsys.web.domain.Referral;
+import com.xray21.refsys.web.dto.request.ReferralSearchCond;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -25,6 +27,10 @@ public class ReferralRepository {
 
     public Optional<Referral> findById(long id) {
         return Optional.ofNullable(mapper.findById(id));
+    }
+
+    public List<Referral> findAllByCondition(ReferralSearchCond cond) {
+        return mapper.findAllByCondition(cond);
     }
 
     public Referral updateReferral(Referral referral){

@@ -2,9 +2,12 @@ package com.xray21.refsys.web.service;
 
 import com.xray21.refsys.web.domain.Referral;
 import com.xray21.refsys.web.dto.request.ReferralSaveRequest;
+import com.xray21.refsys.web.dto.request.ReferralSearchCond;
 import com.xray21.refsys.web.dto.response.ReferralResponse;
 import com.xray21.refsys.web.dto.response.ReferralSaveResponse;
 import com.xray21.refsys.web.repository.ReferralRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,6 +61,15 @@ public class ReferralService {
         Referral findReferral = referralRepository.findById(referralId)
                 .orElseThrow(() -> new IllegalArgumentException("referralId(" + referralId + ") not found"));
         return ReferralResponse.from(findReferral);
+    }
+
+    public List<ReferralResponse> findAllByCondition(ReferralSearchCond cond) {
+
+        List<Referral> referrals = referralRepository.findAllByCondition(cond);
+        log.info("조회 결과 : ID:{} 부터 {}건", cond.getLastId(), referrals.size());
+        return referrals.stream()
+                .map(ReferralResponse::from)
+                .collect(Collectors.toList());
     }
 
     // 소개 수정

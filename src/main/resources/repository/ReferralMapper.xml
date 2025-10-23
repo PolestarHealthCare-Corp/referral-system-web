@@ -88,6 +88,45 @@
         WHERE referral_id = #{id}
     </select>
 
+  <!-- 병원소개 조건검색 -->
+  <select id="findAllByCondition" parameterType="com.xray21.refsys.web.dto.request.ReferralSearchCond" resultType="Referral">
+    SELECT
+    referral_id,
+    user_department,
+    user_name,
+    user_phone,
+    user_password,
+    hospital_name,
+    hospital_zip_code,
+    hospital_address,
+    hospital_contact_name,
+    hospital_contact_phone,
+    xray_count,
+    ct_count,
+    mr_count,
+    mg_count,
+    hospital_memo,
+    approval_type,
+    use_yn,
+    create_date_time,
+    created_by,
+    update_date_time,
+    updated_by
+    FROM referral
+    <where>
+      <if test="userName != null and userName != ''">
+        AND user_name LIKE CONCAT('%', #{userName}, '%')
+      </if>
+      <if test="userPhone != null and userPhone != ''">
+        AND user_phone LIKE CONCAT('%', #{userPhone}, '%')
+      </if>
+      <if test="lastId != null">
+        AND referral_id &lt; #{lastId}
+      </if>
+    </where>
+    ORDER BY create_date_time DESC
+    LIMIT #{limit}
+  </select>
 
     <!-- 병원소개 수정 -->
     <update id="updateReferral" parameterType="Referral">

@@ -2,6 +2,7 @@ package com.xray21.refsys.web.controller.api;
 
 import com.xray21.refsys.web.dto.Response;
 import com.xray21.refsys.web.dto.request.ReferralSaveRequest;
+import com.xray21.refsys.web.dto.request.ReferralSearchCond;
 import com.xray21.refsys.web.dto.request.ReferralUpdateRequest;
 import com.xray21.refsys.web.dto.response.ReferralResponse;
 import com.xray21.refsys.web.dto.response.ReferralSaveResponse;
@@ -9,9 +10,9 @@ import com.xray21.refsys.web.service.ReferralService;
 import java.net.URI;
 
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,10 +41,20 @@ public class ReferralRestController {
 
     //병원소개 단건조회
     @GetMapping("/{id}")
-    public ResponseEntity<Response<ReferralResponse>> findByReferralId(@PathVariable Long id, Model model) {
+    public ResponseEntity<Response<ReferralResponse>> findByReferralId(@PathVariable Long id) {
 
         ReferralResponse result = referralService.findByReferralId(id);
         return ResponseEntity.ok().body(Response.success(result));
+    }
+
+    //병원소개 조건검색
+    @GetMapping
+    public ResponseEntity<Response<List<ReferralResponse>>> findReferrals(@RequestBody ReferralSearchCond cond) {
+        //Slice 도 추가
+
+        List<ReferralResponse> results = referralService.findAllByCondition(cond);
+        return ResponseEntity.ok().body(Response.success(results));
+
     }
 
     // 병원소개 수정
