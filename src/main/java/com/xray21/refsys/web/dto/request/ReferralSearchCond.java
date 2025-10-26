@@ -9,6 +9,16 @@ public class ReferralSearchCond {
 	private Long lastId; // 마지막으로 본 referral_id
 	private int limit = 10; // 기본 페이지 크기
 
+	public static ReferralSearchCond createReferralSearchCond(String userName, String userPhone, Long lastId, int limit) {
+		return new ReferralSearchCond(userName, userPhone, lastId, limit);
+	}
+	public ReferralSearchCond(String userName, String userPhone, Long lastId, int limit) {
+		this.userName = userName;
+		this.userPhone = userPhone;
+		this.lastId = lastId;
+		this.limit = limit;
+	}
+
 	public String getUserName() {
 		return userName;
 	}

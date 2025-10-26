@@ -4,7 +4,7 @@ main {
 }
 
 .section {
-  padding: 64px 16px;
+  padding: 64px 24px;
   text-align: center;
 }
 
@@ -15,7 +15,6 @@ main {
 }
 
 .section__subtitle {
-  font-size: var(--font-size-larger);
-  font-weight: bold;
+  font-size: var(--font-size-subtitle);
   color: var(--color-dark-gray);
 }

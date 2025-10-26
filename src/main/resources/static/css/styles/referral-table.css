@@ -1,53 +1,82 @@
-#referral {
+#referrals {
   grid-column: 1 / -1;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.referral__card {
-  max-width: 92%;
+.referrals__card {
   display: flex;
   width: 1200px;
   flex-direction: column;
 }
 
-.referral__header {
+/* referrals 헤더 */
+.referrals__header {
   display: flex;
   justify-content: space-between;
 }
-
 .referral__style {
   color: var(--color-main);
 }
 
-.referral__list { 
+/* referrals 리스트 */
+.referral__list {
   display: flex;
   flex-direction: column;
   gap: 1em;
   margin-top: 20px;
 }
 
-.referral__1 {
-  padding: 20px;
+.referral__content {
+  padding: 40px;
   border-radius: 1em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-.referral__right {
-  margin-top: 0.3em;
+.referral__content:hover {
+  background-color: var(--color-sub);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.referral__1:hover {
-  background-color: #ECF2F6;
-}
-
-.referral__1:hover .referral__tag {
+.referral__content:hover .referral__tag {
   border: 1px solid #001b371a;
 }
 
 .referral__row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.referral__row__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  align-items: flex-start;
+}
+
+.referral__row__left strong {
+  font-size: var(--font-size-content-title);
+  font-weight: bold;
+}
+
+.referral__equipment {
+  display: flex;
+  color: gray;
+  font-size: var(--font-size-15);
+  /* gap: 1em; */
+}
+
+.referral__equipment span:not(:last-child)::after {
+  content: "|";
+  margin: 0 0.5em;
+  color: rgb(208, 208, 208);
+}
+
+.referral__row__right {
+  display: flex;
+  font-size: var(--font-size-tag);
 }
 
 .referral__tag {
@@ -58,23 +87,25 @@
   margin-right: 1em;
 }
 
-.referral__row__left { 
-  display: flex;
-  flex-direction: column;
-  gap: 0.3em;
+.referral__tag:last-child {
+  margin-right: 0;
 }
 
-.referral__row__left strong {
-  font-size: 26px;
-  font-weight: bold;
-}
+@media (max-width: 600px) {
+  .referral__row {
+    flex-direction: column;
+    gap: 1.5em;
+  }
 
-.referral__row__left p {
-  font-size: 18px;
-  color: gray;
-}
+  .referral__row__left {
+    align-items: center;
+  }
 
-.referral__eqipment {
-  display: flex;
-  gap: 1em;
+  .referral__equipment {
+    font-size: 13px;
+  }
+
+  .referral__row__right {
+    font-size: var(--font-size-15);
+  }
 }
