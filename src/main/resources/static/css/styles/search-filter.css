@@ -2,41 +2,63 @@
   grid-column: 1 / -1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 64px 24px 0 24px;
 }
 
 .search__filter {
-  max-width: 92%;
-  background-color: #ECF2F6;
+  width: 750px;
+  background-color: var(--color-sub);
   border-radius: 2em;
 }
 
 .search__row {
   padding: 50px;
   display: flex;
-  align-items: center;
   gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
 }
 
-.search__row label {
+/* .search__row label {
   font-weight: 500;
-}
+} */
 
 .search__row input {
-  padding: 6px 10px;
+  padding: 13px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: var(--font-size-text);
 }
 
-.search__row .reset-btn {
-  padding: 6px 12px;
+.search__row .search__btn {
+  padding: 13px;
   background-color: #f4f4f4;
   border: 1px solid #ccc;
   border-radius: 6px;
   cursor: pointer;
+  font-size: var(--font-size-text);
   transition: background-color 0.2s;
+}
+
+.search__row .search__btn:hover {
+  background-color: #e0e0e0;
+}
+
+#searchBtn {
+  background-color: #B2C8D8; /* 기본 */
+  color: #001b37;
+  border: 1px solid #A5BACB;
+}
+
+#searchBtn:hover {
+  background-color: #9FB7C9; /* hover 시 살짝 어둡게 */
+  border-color: #91A9BB;
+}
+
+@media (max-width: 770px) {
+  .search__row {
+    flex-direction: column;
+    gap: 1em;
+    align-content: center;
+  }
 }

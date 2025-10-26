@@ -1,16 +1,31 @@
 #notice {
   grid-column: 1 / -1;
-  background-image: url(../../images/background.png);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(/images/background.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 80px 0;
 }
 
 .section__box {
   width: 92%;
   text-align: left;
+}
+
+@media (max-width: 610px) {
+  .section__box {
+    padding: 0 24px;
+  }
+
+  .section__title {
+    font-size: 33px;
+  }
+
+  .section__subtitle {
+    font-size: 15px;
+  }
 }

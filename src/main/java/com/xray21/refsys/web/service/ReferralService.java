@@ -3,6 +3,7 @@ package com.xray21.refsys.web.service;
 import com.xray21.refsys.web.domain.Referral;
 import com.xray21.refsys.web.dto.request.ReferralSaveRequest;
 import com.xray21.refsys.web.dto.request.ReferralSearchCond;
+import com.xray21.refsys.web.dto.response.ReferralListResponse;
 import com.xray21.refsys.web.dto.response.ReferralResponse;
 import com.xray21.refsys.web.dto.response.ReferralSaveResponse;
 import com.xray21.refsys.web.repository.ReferralRepository;
@@ -35,6 +36,7 @@ public class ReferralService {
         this.referralRepository = referralRepository;
     }
 
+    //소개 등록
     @Transactional
     public ReferralSaveResponse saveReferral(ReferralSaveRequest request) {
 
@@ -56,6 +58,7 @@ public class ReferralService {
         }
     }
 
+    //소개 단건 조회
     public ReferralResponse findByReferralId(Long referralId) {
 
         Referral findReferral = referralRepository.findById(referralId)
@@ -63,12 +66,28 @@ public class ReferralService {
         return ReferralResponse.from(findReferral);
     }
 
-    public List<ReferralResponse> findAllByCondition(ReferralSearchCond cond) {
+    //최신 등록된 소개 10개 리스트 조회
+    public List<ReferralListResponse> findInitialReferrals() {
 
-        List<Referral> referrals = referralRepository.findAllByCondition(cond);
-        log.info("조회 결과 : ID:{} 부터 {}건", cond.getLastId(), referrals.size());
+        ReferralSearchCond referralSearchCond = ReferralSearchCond.createReferralSearchCond("", "", null, 10);
+
+        List<Referral> referrals = referralRepository.findAllByCondition(referralSearchCond);
+//        log.info("조회 결과 : ID:{} 부터 {}건", cond.getLastId(), referrals.size());
         return referrals.stream()
-                .map(ReferralResponse::from)
+                .map(ReferralListResponse::from)
+                .collect(Collectors.toList());
+    }
+
+
+    //소개 조건 검색
+    public List<ReferralListResponse> findAllByCondition(String userName, String userPhone, Long lastId, int limit) {
+
+        ReferralSearchCond referralSearchCond = ReferralSearchCond.createReferralSearchCond(userName, userPhone, lastId, limit);
+
+        List<Referral> referrals = referralRepository.findAllByCondition(referralSearchCond);
+//        log.info("조회 결과 : ID:{} 부터 {}건", cond.getLastId(), referrals.size());
+        return referrals.stream()
+                .map(ReferralListResponse::from)
                 .collect(Collectors.toList());
     }
 

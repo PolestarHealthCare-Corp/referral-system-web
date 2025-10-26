@@ -11,23 +11,20 @@
 
 .header__menu {
   display: flex;
-  width: 92%;
-  height: 100%;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+  padding: 0 24px;
 }
 
-.scrolled {
-  border-bottom: 1px solid #001b371a;
+/* 스크롤시 nav바 아래에 줄 생성 */
+.header.scrolled {
+  border-bottom: 1px solid var(--color-nav-underline);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .header__homelink {
-  display: inline-block;
-  padding: 5px 24px 5px 0;
-  height: var(--height-toolbar);
   line-height: var(--height-toolbar);
-  cursor: pointer;
 }
 
 .header__logo {
@@ -45,11 +42,11 @@
 
 .header__nav-item a {
   display: inline-block;
-  height: var(--height-toolbar);
   line-height: var(--height-toolbar);
-  padding: 0 0.8em;
+  /* padding: 0 0.8em; */
 }
 
+/* nav 메뉴 호버되면 효과 적용 */
 .header__nav-item::after {
   content: '';
   position: absolute;
@@ -65,4 +62,15 @@
   left: 0;
   width: 100%;
   height: 8px;
+}
+
+/* 반응형 작업할때 좌측 메뉴로 숨기기 */
+@media (max-width: 430px) {
+  .header{
+    height: 100%;
+  }
+  .header__menu {
+    flex-direction: column;
+    gap: 1em;
+  }
 }

@@ -6,33 +6,34 @@
 @import url('./styles/footer.css');
 @import url('./styles/referral-form.css');
 
+/*다운받아라*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap');
 
 /* ===== 변수 구간 ===== */
 :root {
   --color-main: #2E4CFF;
-  --color-sub: #00A200;
-  --color-dark: #2F4858;
-  --color-emph: #F10F5F;
+  --color-sub: #ECF2F6;
   --color-text: #281812;
-  --color-lighter: #DC9C86;
-  --color-light-bd: #FFE6D6;
-  --color-light-bg: #FFF5ED;
   --color-black: #000000;
   --color-dark-gray: #5a5a5a;
+  --color-nav-underline : #001b371a;
+  --color-copyright : #333d4b;
 
   --font-code: 'Nanum Gothic Coding', monospace;;
 
   --font-size-title: 44px;
-  --font-size-subtitle: 32px;
-  --font-size-tag: 26px;
-  --font-size-larger: 20px;
+  --font-size-subtitle: 20px;
+  --font-size-content-title: 26px;
   --font-size-text: 18px;
-  --font-size-nav: 15px;
+  --font-size-tag: 16px;
+  --font-size-15: 15px;
+  --font-size-nav: 18px;
+  --font-size-footer-copyright : 15px;
+  --font-size-footer : 13px;
+
   --height-toolbar: 72px;
 }
-
 
 /* ===== 리셋 구간 ===== */
 
@@ -92,11 +93,6 @@ address { font-style: inherit; }
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
-}
-
-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 }
 
 .default__size {

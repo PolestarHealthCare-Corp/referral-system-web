@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="21세기영상의학과 | Referral System">
+  <meta property="og:description" content="21세기영상의학과는 국내 최초의 원격판독센터로서 전국 의료기관을 대상으로 원격판독 서비스를 제공하고 있습니다.">
+  <!--  <meta property="og:image" th:content="@{/images/favicon.svg}">-->
+
   <title>21세기영상의학과 | Referral System</title>
 
-  <link rel="shortcut icon" href="../../static/images/favicon.svg" type="image/svg">
-  <link rel="stylesheet" href="../../static/css/style.css">
-  <script src="../../static/js/basic.js"></script>
+  <link rel="shortcut icon" th:href="@{/images/favicon.svg}" type="image/svg">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <script th:src="@{/js/basic.js}"></script>
 </head>
 <body>
 
 <header class="header">
   <div class="header__menu default__size">
     <h1>
-      <a class="header__homelink" href="#">
-        <img class="header__logo" src="../../static/images/favicon.svg" alt="홈으로">
+      <a class="header__homelink" th:href="@{/}">
+        <img class="header__logo" th:src="@{/images/favicon.svg}" alt="홈으로">
         <svg class="header__logo" width="190" height="53" xmlns="http://www.w3.org/2000/svg" fill="none">
           <path id="svg_5" fill="currentColor" d="m40.603,11.8726l2.907,0c0.165,0 0.305,0.1332 0.305,0.3046l0,11.6202c0,0.165 0.133,0.3046 0.304,0.3046l2.405,0c0.165,0 0.305,-0.1333 0.305,-0.3046l0,-20.72722c0,-0.165 -0.133,-0.30462 -0.305,-0.30462l-2.405,0c-0.165,0 -0.304,0.13327 -0.304,0.30462l0,5.60382c0,0.165 -0.134,0.3046 -0.305,0.3046l-2.907,0c-0.165,0 -0.304,0.1333 -0.304,0.3047l0,2.2846c0,0.1651 0.139,0.3047 0.304,0.3047z"/>
           <path id="svg_6" fill="currentColor" d="m66.344,8.674c0.463,-1.98 0.565,-3.6428 0.59,-4.62013c0,-0.17135 -0.133,-0.31097 -0.304,-0.31097l-10.383,0c-0.165,0 -0.305,0.13327 -0.305,0.30462l0,2.06258c0,0.165 0.134,0.3046 0.305,0.3046l6.994,0c0.177,0 0.323,0.1587 0.304,0.3364c-0.101,1.0471 -0.311,2.0625 -0.615,3.0272c-0.356,1.1169 -0.844,2.1831 -1.454,3.1732c-0.742,1.1867 -1.688,2.2973 -2.805,3.2874c-1.421,1.2629 -2.824,2.0816 -3.7,2.5449c-0.196,0.1015 -0.215,0.3744 -0.038,0.5077c1.416,1.0915 1.879,1.4469 2.063,1.5929c0.101,0.0762 0.235,0.0888 0.343,0.0254c1.18,-0.7235 2.767,-1.8341 4.283,-3.4588c1.238,-1.32 2.272,-2.786 3.078,-4.3472c0.724,-1.3962 1.276,-2.8876 1.638,-4.4234l0.006,-0.0064z"/>
@@ -72,7 +76,7 @@
     <nav class="header__nav">
       <ul>
         <li class="header__nav-item">
-          <a href="#html">소개 내역</a>
+          <a th:href="@{/}">소개 내역</a>
         </li>
       </ul>
     </nav>
@@ -209,10 +213,10 @@
 
 <footer id="footer">
   <h1 class="sr-only">Copyright</h1>
-  <div class="footer__row default__size">
-    <strog class="footer__bold">
+  <div class="footer__row">
+    <strong class="footer__copyright">
       © 2025 Polestar Healthcare.Co,Ltd. All rights reserved.
-    </strog>
+    </strong>
     <p>
       21세기영상의학과의원 (윤여동)<br>
       서울특별시 서초구 강남대로 331 광일프라자 2001호<br>
@@ -220,11 +224,11 @@
       전화 02-582-6383 | 팩스 02-521-4821<br>
     </p>
 
-    <div class="footer__impormation">
-      <a href="#">21세기영상의학과</a>
-      <a href="#">개인정보 취급방지</a>
-      <a href="#">법적고지</a>
-      <a href="#">이메일무단수집거부</a>
+    <div class="footer__information">
+      <a href="https://www.xray21.com/">21세기영상의학과</a>
+      <a href="https://www.xray21.com/privacy-policy/">개인정보 취급방지</a>
+      <a href="https://www.xray21.com/legal/">법적고지</a>
+      <a href="https://www.xray21.com/email-refusal/">이메일무단수집거부</a>
     </div>
   </div>
 </footer>
