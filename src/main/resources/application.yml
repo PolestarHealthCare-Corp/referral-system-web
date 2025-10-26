@@ -18,3 +18,8 @@ mybatis:
   type-aliases-package: com.xray21.refsys.web.domain
   configuration:
     map-underscore-to-camel-case: true
+
+server:
+  error:
+    whitelabel:
+      enabled: false
