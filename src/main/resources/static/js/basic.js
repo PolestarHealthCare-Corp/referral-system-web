@@ -8,6 +8,12 @@ window.addEventListener('scroll', function () {
   }
 });
 
+//홈으로 이동
+const backBtn = document.getElementById('backHome');
+backBtn.addEventListener('click', () => {
+  window.location.href = '/';
+});
+
 //조건 검색
 document.addEventListener('DOMContentLoaded', function() {
   const searchBtn = document.getElementById('searchBtn');

@@ -86,15 +86,15 @@
 
 <main>
   <section id="create__form" class="section">
-    <header class="section__header">
+    <header>
       <h1 class="section__title">
         병원 소개하기
       </h1>
     </header>
 
     <div class="create__form">
-      <form action="/submit" method="post">
-        <div class="create__form__row">
+      <form role="form" action="/referrals/new" th:object="${form}" method="post">
+        <div class="create__form-row">
           <strong class="section__subtitle">
             작성자 정보
           </strong>
@@ -102,101 +102,205 @@
           <div class="form__grid">
 
             <div class="form__row">
-              <label for="department1">소속</label>
-              <input type="text" id="department1" name="department" placeholder="소속을 입력하세요" required>
+              <label th:for="userDepartment">소속</label>
+              <input type="text" th:field="*{userDepartment}"
+                     th:errorclass="field-error" class="form-control" placeholder="소속을 입력하세요">
+              <div></div>
+              <div class="field-error" th:errors="*{userDepartment}">
+                userDepartment 오류
+              </div>
             </div>
 
             <div class="form__row">
-              <label for="name1">이름</label>
-              <input type="text" id="name1" name="name" placeholder="이름을 입력하세요" required>
+              <label th:for="userName">이름
+                <span class="required">*</span>
+              </label>
+              <input type="text" th:field="*{userName}"
+                     th:errorclass="field-error" class="form-control" placeholder="이름을 입력하세요">
+              <div></div>
+              <div class="field-error" th:errors="*{userName}">
+                userName 오류
+              </div>
             </div>
 
             <div class="form__row">
-              <label for="phone1">연락처</label>
+              <label th:for="userPhoneFront">연락처
+                <span class="required">*</span>
+              </label>
               <div class="create__phone">
-                <input type="tel" id="phone1" name="phone1" maxlength="3" placeholder="010" required>
+                <input type="tel" th:field="*{userPhoneFront}" maxlength="3"
+                       th:errorclass="field-error" class="form-control" placeholder="010">
                 <p>-</p>
-                <input type="tel" id="phone2" name="phone2" maxlength="4" placeholder="1234" required>
+                <input type="tel" th:field="*{userPhoneMiddle}" maxlength="4"
+                       th:errorclass="field-error" class="form-control" placeholder="1234">
                 <p>-</p>
-                <input type="tel" id="phone3" name="phone3" maxlength="4" placeholder="5678" required>
+                <input type="tel" th:field="*{userPhoneBack}" maxlength="4"
+                       th:errorclass="field-error" class="form-control" placeholder="5678">
+              </div>
+              <div></div>
+              <div class="field-error" th:errors="*{userPhoneFront}">
+                userPhoneFront 오류
+              </div>
+              <div></div>
+              <div class="field-error" th:errors="*{userPhoneMiddle}">
+                userPhoneMiddle 오류
+              </div>
+              <div></div>
+              <div class="field-error" th:errors="*{userPhoneBack}">
+                userPhoneBack 오류
               </div>
             </div>
 
           </div>
         </div>
 
-        <div class="create__form__row">
+        <div class="create__form-row">
           <strong class="section__subtitle">
             병원 정보
           </strong>
 
           <div class="form__grid">
             <div class="form__row">
-              <label for="department">병원명</label>
-              <input type="text" id="department" name="department" placeholder="소속을 입력하세요" required>
+              <label th:for="hospitalName">병원명
+                <span class="required">*</span>
+              </label>
+              <input type="text" th:field="*{hospitalName}"
+                     th:errorclass="field-error" class="form-control" placeholder="소개할 병원 이름을 입력하세요">
+              <div></div>
+              <div class="field-error" th:errors="*{hospitalName}">
+                hospitalName 오류
+              </div>
             </div>
 
             <div class="form__row">
-              <label for="name">주소</label>
+              <label th:for="hospitalAddress">주소
+                <span class="required">*</span>
+              </label>
               <div class="create__address">
                 <div class="create__address_search">
-                  <input type="text" id="name2" name="name" placeholder="우편번호를 입력하세요" required>
-                  <button>우편번호 찾기</button>
+                  <input type="text" th:field="*{hospitalZipCode}"
+                         th:errorclass="field-error" class="form-control" placeholder="우편번호를 입력하세요">
+                  <button type="button" class="btn btn--zipcode" onclick="location.href='/list'">우편번호 찾기</button>
                 </div>
-                <input type="text" id="name3" name="name" placeholder="주소를 입력하세요" required>
-                <input type="text" id="name4" name="name" placeholder="상세주소를 입력하세요" required>
+                <input type="text" th:field="*{hospitalAddress}"
+                       th:errorclass="field-error" class="form-control" placeholder="주소를 입력하세요">
+<!--                <input type="text" id="name" name="name" placeholder="상세주소를 입력하세요" required>-->
+              </div>
+              <div></div>
+              <div class="field-error" th:errors="*{hospitalZipCode}">
+                hospitalZipCode 오류
+              </div>
+              <div></div>
+              <div class="field-error" th:errors="*{hospitalAddress}">
+                hospitalAddress 오류
               </div>
             </div>
 
             <div class="form__row">
-              <label for="name">담당자 이름</label>
-              <input type="text" id="name5" name="name" placeholder="이름을 입력하세요" required>
+              <label th:for="name">담당자 이름
+                <span class="required">*</span>
+              </label>
+              <input type="text" th:field="*{hospitalContactName}"
+                     th:errorclass="field-error" class="form-control" placeholder="소개할 병원 담당자 이름을 입력하세요">
+              <div></div>
+              <div class="field-error" th:errors="*{hospitalContactName}">
+                hospitalContactName 오류
+              </div>
             </div>
 
             <div class="form__row">
-              <label for="phone1">담당자 연락처</label>
+              <label th:for="hospitalContactPhoneFront">담당자 연락처
+                <span class="required">*</span>
+              </label>
               <div class="create__phone">
-                <input type="tel" id="phone4" name="phone1" maxlength="3" placeholder="010" required>
+                <input type="tel" th:field="*{hospitalContactPhoneFront}"
+                       th:errorclass="field-error" class="form-control" maxlength="3" placeholder="010">
                 <p>-</p>
-                <input type="tel" id="phone5" name="phone2" maxlength="4" placeholder="1234" required>
+                <input type="tel" th:field="*{hospitalContactPhoneMiddle}"
+                       th:errorclass="field-error" class="form-control" maxlength="4" placeholder="1234">
                 <p>-</p>
-                <input type="tel" id="phone6" name="phone3" maxlength="4" placeholder="5678" required>
+                <input type="tel" th:field="*{hospitalContactPhoneBack}"
+                       th:errorclass="field-error" class="form-control" maxlength="4" placeholder="5678">
+              </div>
+              <div></div>
+              <div class="field-error" th:errors="*{hospitalContactPhoneFront}">
+                hospitalContactPhoneFront 오류
+              </div>
+              <div th:if="${#fields.hasErrors('hospitalContactPhoneMiddle')}"></div>
+              <div class="field-error" th:errors="*{hospitalContactPhoneMiddle}">
+                hospitalContactPhoneMiddle 오류
+              </div>
+              <div></div>
+              <div class="field-error" th:errors="*{hospitalContactPhoneBack}">
+                hospitalContactPhoneBack 오류
               </div>
             </div>
 
-            <div class="form__row eqipment">
-              <label for="name">X-ray</label>
-              <input type="text" id="name5" name="name" placeholder="이름을 입력하세요" required>
+            <div class="form__row equipment-first">
+              <label th:for="xrayCount">X-ray</label>
+              <input type="text" th:field="*{xrayCount}"
+                     th:errorclass="field-error" class="form-control" placeholder="X-ray 대수">
+              <div></div>
+              <div class="field-error" th:errors="*{xrayCount}">
+                xrayCount 오류
+              </div>
             </div>
 
-            <div class="form__row eqipment">
-              <label for="name">CT</label>
-              <input type="text" id="name6" name="name" placeholder="이름을 입력하세요" required>
+            <div class="form__row equipment">
+              <label th:for="ctCount">CT</label>
+              <input type="text" th:field="*{ctCount}"
+                     th:errorclass="field-error" class="form-control" placeholder="CT 대수">
+              <div></div>
+              <div class="field-error" th:errors="*{ctCount}">
+                ctCount 오류
+              </div>
             </div>
 
-            <div class="form__row eqipment">
-              <label for="name">MR</label>
-              <input type="text" id="name7" name="name" placeholder="이름을 입력하세요" required>
+            <div class="form__row equipment">
+              <label th:for="mrCount">MR</label>
+              <input type="text" th:field="*{mrCount}"
+                     th:errorclass="field-error" class="form-control" placeholder="MR 대수">
+              <div></div>
+              <div class="field-error" th:errors="*{mrCount}">
+                mrCount 오류
+              </div>
             </div>
 
-            <div class="form__row eqipment-last">
-              <label for="name">MG</label>
-              <input type="text" id="name8" name="name" placeholder="이름을 입력하세요" required>
+            <div class="form__row equipment-last">
+              <label th:for="mgCount">MG</label>
+              <input type="text" th:field="*{mgCount}"
+                     th:errorclass="field-error" class="form-control" placeholder="Mammography 대수">
+              <div></div>
+              <div class="field-error" th:errors="*{mgCount}">
+                mgCount 오류
+              </div>
+            </div>
+
+<!--            <div class="form__row">-->
+<!--              <label for="name">첨부파일</label>-->
+<!--              <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>-->
+<!--            </div>-->
+
+            <div class="form__row">
+              <label th:for="hospitalMemo">특이사항</label>
+              <input type="text" th:field="*{hospitalMemo}"
+                     th:errorclass="field-error" class="form-control" placeholder="특이사항을 입력하세요">
+              <div></div>
+              <div class="field-error" th:errors="*{hospitalMemo}">
+                hospitalMemo 오류
+              </div>
             </div>
 
             <div class="form__row">
-              <label for="name">첨부파일</label>
-              <input type="text" id="name9" name="name" placeholder="이름을 입력하세요" required>
-            </div>
-
-            <div class="form__row">
-              <label for="name">특이사항</label>
-              <input type="text" id="name10" name="name" placeholder="이름을 입력하세요" required>
-            </div>
-
-            <div class="form__row">
-              <label for="name">비밀번호</label>
-              <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+              <label th:for="userPassword">비밀번호
+                <span class="required">*</span>
+              </label>
+              <input type="text" th:field="*{userPassword}"
+                     th:errorclass="field-error" class="form-control" placeholder="비밀번호를 입력하세요">
+              <div></div>
+              <div class="field-error" th:errors="*{userPassword}">
+                userPassword 오류
+              </div>
             </div>
 
           </div>
@@ -204,10 +308,10 @@
 
         <div class="form__buttons">
           <button type="submit" class="btn btn--primary">제출</button>
-          <button type="button" class="btn btn--secondary" onclick="location.href='/list'">목록으로</button>
+          <button id="backHome" type="button" class="btn btn--secondary" onclick="location.href='/'">목록으로</button>
         </div>
       </form>
-
+    </div>
   </section>
 </main>
 

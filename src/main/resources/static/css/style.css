@@ -2,8 +2,9 @@
 @import url('./styles/main.css');
 @import url('./styles/notice.css');
 @import url('./styles/search-filter.css');
-@import url('./styles/referral-table.css');
+@import url('styles/referral-list.css');
 @import url('./styles/footer.css');
+
 @import url('./styles/referral-form.css');
 
 /*다운받아라*/

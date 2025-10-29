@@ -1,12 +1,17 @@
 package com.xray21.refsys.web.controller;
 
+import com.xray21.refsys.web.dto.request.ReferralSaveRequest;
 import com.xray21.refsys.web.dto.response.ReferralListResponse;
 import com.xray21.refsys.web.service.ReferralService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -31,8 +36,22 @@ public class ReferralController {
 	}
 
 	@GetMapping("/referrals/new")
-	public String createForm() {
+	public String createForm(Model model) {
+
+		model.addAttribute("form", new ReferralSaveRequest());
 		return "/referrals/createReferralForm";
+	}
+
+	@PostMapping("/referrals/new")
+	public String create(@Validated @ModelAttribute("form") ReferralSaveRequest request, BindingResult bindingResult) {
+		referralService.saveReferral(request);
+
+		if (bindingResult.hasErrors()) {
+			log.info("errors = {}", bindingResult);
+//            model.addAttribute("errors", bindingResult); // bindingResult 은 자동으로 뷰에 넘어간다.
+			return "/referrals/createReferralForm";
+		}
+		return "redirect:/";
 	}
 
 }

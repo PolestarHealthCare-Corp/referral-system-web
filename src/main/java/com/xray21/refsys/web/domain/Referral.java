@@ -37,13 +37,13 @@ public class Referral {
 	public Referral(ReferralSaveRequest request) {
 		this.userDepartment = request.getUserDepartment();
 		this.userName = request.getUserName();
-		this.userPhone = request.getUserPhone();
+		this.userPhone = request.getUserPhoneFront()+request.getUserPhoneMiddle()+request.getUserPhoneBack();
 		this.userPassword = request.getUserPassword();
 		this.hospitalName = request.getHospitalName();
 		this.hospitalZipCode = request.getHospitalZipCode();
 		this.hospitalAddress = request.getHospitalAddress();
 		this.hospitalContactName = request.getHospitalContactName();
-		this.hospitalContactPhone = request.getHospitalContactPhone();
+		this.hospitalContactPhone = request.getHospitalContactPhoneFront()+request.getHospitalContactPhoneMiddle()+request.getHospitalContactPhoneBack();
 		this.xrayCount = request.getXrayCount();
 		this.ctCount = request.getCtCount();
 		this.mrCount = request.getMrCount();
@@ -52,7 +52,7 @@ public class Referral {
 		this.approvalType = AppConstants.RECEIVED;
 		this.useYn = AppConstants.USE;
 		this.createDateTime = LocalDateTime.now();
-		this.createdBy = request.getUserPhone();
+		this.createdBy = request.getUserPhoneFront()+request.getUserPhoneMiddle()+request.getUserPhoneBack();
 		this.updateDateTime = null;
 		this.updatedBy = null;
 	}

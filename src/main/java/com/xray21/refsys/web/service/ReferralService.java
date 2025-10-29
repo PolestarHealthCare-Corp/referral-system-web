@@ -41,7 +41,7 @@ public class ReferralService {
     public ReferralSaveResponse saveReferral(ReferralSaveRequest request) {
 
         //작성자가 이미 소개한 병원인지 확인
-        existsByUserAndHospital(request);
+//        existsByUserAndHospital(request);
 
         Referral referral = Referral.createReferral(request);
 
@@ -49,14 +49,14 @@ public class ReferralService {
         return ReferralSaveResponse.from(savedReferral);
     }
 
-    private void existsByUserAndHospital(ReferralSaveRequest request) {
-        int exists = referralRepository.existsByUserPhoneAndHospitalName(request.getUserPhone(),
-                request.getHospitalName());
-        if (exists == 1) {
-            log.error("작성자({}) 이미 소개한 병원({})입니다.", request.getUserPhone(), request.getHospitalName());
-            throw new IllegalStateException("이미 소개해주신 병원입니다. 소개 작성 내역을 확인해주세요.");
-        }
-    }
+//    private void existsByUserAndHospital(ReferralSaveRequest request) {
+//        int exists = referralRepository.existsByUserPhoneAndHospitalName(request.getUserPhone(),
+//                request.getHospitalName());
+//        if (exists == 1) {
+//            log.error("작성자({}) 이미 소개한 병원({})입니다.", request.getUserPhone(), request.getHospitalName());
+//            throw new IllegalStateException("이미 소개해주신 병원입니다. 소개 작성 내역을 확인해주세요.");
+//        }
+//    }
 
     //소개 단건 조회
     public ReferralResponse findByReferralId(Long referralId) {
