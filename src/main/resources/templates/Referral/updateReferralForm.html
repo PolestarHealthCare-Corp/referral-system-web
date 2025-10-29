@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<head th:replace="~{fragments/header :: header}" />
+<body>
+<div class="container">
+  <div th:replace="~{fragments/bodyHeader :: bodyHeader}"/>
+  <form th:action="@{'/api/v1/referrals/' + ${referral.id} + '/update'}" method="post" th:object="${referral}">
+
+
+    <div class="form-group">
+      <label th:for="hospitalName">hospitalName</label>
+      <input type="test" th:field="*{hospitalName}" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label th:for="hospitalAddress">hospitalAddress</label>
+      <input type="text" th:field="*{hospitalAddress}" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label th:for="hospitalContactName">hospitalContactName</label>
+      <input type="text" th:field="*{hospitalContactName}" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label th:for="hospitalContactPhone">hospitalContactPhone</label>
+      <input type="phone" th:field="*{hospitalContactPhone}" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</body>
+</html>

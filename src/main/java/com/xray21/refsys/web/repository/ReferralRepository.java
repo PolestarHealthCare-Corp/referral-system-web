@@ -23,13 +23,12 @@ public class ReferralRepository {
         return mapper.existsByUserPhoneAndHospitalName(userPhone, hospitalName);
     }
 
-    public Optional<Referral> findById(long id) {
+    public Optional<Referral> findById(Long id) {
         return Optional.ofNullable(mapper.findById(id));
     }
 
-    public Referral updateReferral(Referral referral){
-        mapper.update(referral);
-        return referral;
+    public void updateReferral(Referral referral){
+        mapper.updateReferral(referral);
     }
 
 

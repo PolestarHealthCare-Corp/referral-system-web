@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.xray21.refsys.web.dto.request.ReferralUpdateRequest;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 
@@ -62,20 +63,27 @@ public class ReferralService {
 
     // 소개 수정
     @Transactional
-    public ReferralResponse updateReferral(ReferralUpdateRequest request, Long id) {
+    public ReferralResponse updateReferral(Long id, ReferralUpdateRequest request) {
         log.debug("서비스 시작");
 
-        //requst 파라미터를 Referral 객체로 변경
+        // 1. 기존 Data 조회
         Referral referral = referralRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 id의 소개가 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("해당 병원 소개글이 존재하지 않습니다."));
 
-        //실제 db에서 update 실행
-        Referral savedReferral = referralRepository.updateReferral(referral);
+        // 2. 수정로직 적용
+        referral.setHospitalName(request.getHospitalName());
+        referral.setHospitalAddress(request.getHospitalAddress());
+        referral.setHospitalContactName(request.getHospitalContactName());
+        referral.setHospitalContactPhone(request.getHospitalContactPhone());
 
-        //Referral 객체를 ReferralResponse Dto로 변환
-        ReferralResponse from = ReferralResponse.from(savedReferral);
+        // 3. DB 반영
+        referralRepository.updateReferral(referral);
 
-        return from;
+        // 4. 수정된 data 다시 조회 후 DTO 변환
+        Referral updatedReferral = referralRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("수정된 데이터를 조회할 수 없음."));
+
+        return ReferralResponse.from(updatedReferral);
     }
 
 }

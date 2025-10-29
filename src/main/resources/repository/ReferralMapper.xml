@@ -93,25 +93,25 @@
     <update id="updateReferral" parameterType="Referral">
         UPDATE referral
         SET
-           user_department = #{userDepartment},
-            user_name = #{userName},
-            user_phone = #{userPhone},
-            user_password = #{userPassword},
-            hospital_name = #{hospitalName},
-            hospital_zip_code = #{hospitalZipCode},
-            hospital_address = #{hospitalAddress},
+            user_department     = #{userDepartment},
+            user_name           = #{userName},
+            user_phone          = #{userPhone},
+            user_password       = #{userPassword},
+            hospital_name       = #{hospitalName},
+            hospital_zip_code   = #{hospitalZipCode},
+            hospital_address    = #{hospitalAddress},
             hospital_contact_name = #{hospitalContactName},
             hospital_contact_phone = #{hospitalContactPhone},
-            xray_count = #{xrayCount},
-            ct_count = #{ctCount},
-            mr_count = #{mrCount},
-            mg_count = #{mgCount},
-            hospital_memo = #{hospitalMemo},
-            approval_type = #{approvalType},
-            use_yn = #{useYn},
-            update_date_time = #{updateDateTime},
-            updated_by = #{updatedBy}
-        WHERE referral_id = #{referralId}
+            xray_count          = #{xrayCount},
+            ct_count            = #{ctCount},
+            mr_count            = #{mrCount},
+            mg_count            = #{mgCount},
+            hospital_memo       = #{hospitalMemo},
+            approval_type       = #{approvalType},
+            use_yn              = #{useYn},
+            update_date_time    = #{updateDateTime},
+            updated_by          = NOW()
+        WHERE referral_id       = #{referralId}
     </update>
 
 </mapper>

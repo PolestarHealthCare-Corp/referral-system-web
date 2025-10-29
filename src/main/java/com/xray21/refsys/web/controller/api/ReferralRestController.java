@@ -35,7 +35,7 @@ public class ReferralRestController {
     public ResponseEntity<Response<ReferralSaveResponse>> saveReferral(@RequestBody ReferralSaveRequest request) {
 
         ReferralSaveResponse result = referralService.saveReferral(request);
-        return ResponseEntity.created(URI.create("/api/v1/referrals/"+ result.getReferralId())).body(Response.success(result));
+        return ResponseEntity.created(URI.create("/api/v1/referrals/" + result.getReferralId())).body(Response.success(result));
     }
 
     //병원소개 단건조회
@@ -47,11 +47,10 @@ public class ReferralRestController {
     }
 
     // 병원소개 수정
-    @PostMapping("/{id}")
+    @PostMapping("/{id}/update")
     public ResponseEntity<Response<ReferralResponse>> updateReferral(@Valid @PathVariable Long id, @RequestBody ReferralUpdateRequest request) {
 
-        ReferralResponse result = referralService.updateReferral(request, id);
+        ReferralResponse result = referralService.updateReferral(id, request);
         return ResponseEntity.ok().body(Response.success(result));
     }
-    
 }

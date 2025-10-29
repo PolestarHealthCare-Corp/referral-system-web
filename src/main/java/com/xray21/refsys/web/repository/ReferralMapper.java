@@ -12,7 +12,7 @@ public interface ReferralMapper {
 
     Referral findById(Long id);
 
-    void update(Referral referral);
+    int updateReferral(Referral referral);
 
 
 }
