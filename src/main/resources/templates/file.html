@@ -2,13 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>윤상영 파일첨부 해</title>
+    <title>파일첨부테스트</title>
 </head>
 <body>
-<h1>파일 첨부하기</h1>
+<h1>파일 첨부</h1>
 <form>
-<input type="file">
+<input id="fileInput" type="file">
+<h2>내가 선택한 파일 목록</h2>
+<ul id="fileList">파일리스트</ul>
 <button type="submit">업로드하기</button>
 </form>
+
+<!--자바스크립트-->
+<script>
+    const fileInput = document.getElementById("fileInput");
+    const fileList = document.getElementById("fileList");
+</script>
 </body>
 </html>
