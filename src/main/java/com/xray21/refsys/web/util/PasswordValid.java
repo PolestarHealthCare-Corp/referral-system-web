@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PasswordValid {
 
-	String message() default "비밀번호는 숫자 4자리이며, 연속되거나 반복된 숫자는 사용할 수 없습니다.";
+	String message() default "연속되거나 반복되는 숫자는 사용할 수 없습니다.";
 
 	Class<?>[] groups() default {};
 

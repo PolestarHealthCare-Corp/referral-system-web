@@ -56,6 +56,7 @@ public class ReferralRestController {
             @RequestParam(required = false) Long lastId,
             @RequestParam(defaultValue = "10") int limit) {
 
+        log.info("조건검색함");
         List<ReferralListResponse> results = referralService.findAllByCondition(userName, userPhone, lastId, limit);
         return ResponseEntity.ok().body(Response.success(results));
     }

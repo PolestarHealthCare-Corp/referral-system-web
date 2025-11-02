@@ -105,7 +105,7 @@
               <label th:for="userDepartment">소속</label>
               <input type="text" th:field="*{userDepartment}"
                      th:errorclass="field-error" class="form-control" placeholder="소속을 입력하세요">
-              <div></div>
+              <div th:if="${#fields.hasErrors('userDepartment')}"></div>
               <div class="field-error" th:errors="*{userDepartment}">
                 userDepartment 오류
               </div>
@@ -117,7 +117,7 @@
               </label>
               <input type="text" th:field="*{userName}"
                      th:errorclass="field-error" class="form-control" placeholder="이름을 입력하세요">
-              <div></div>
+              <div th:if="${#fields.hasErrors('userName')}"></div>
               <div class="field-error" th:errors="*{userName}">
                 userName 오류
               </div>
@@ -132,21 +132,24 @@
                        th:errorclass="field-error" class="form-control" placeholder="010">
                 <p>-</p>
                 <input type="tel" th:field="*{userPhoneMiddle}" maxlength="4"
-                       th:errorclass="field-error" class="form-control" placeholder="1234">
+                       th:errorclass="field-error" class="form-control" placeholder="0000">
                 <p>-</p>
                 <input type="tel" th:field="*{userPhoneBack}" maxlength="4"
-                       th:errorclass="field-error" class="form-control" placeholder="5678">
+                       th:errorclass="field-error" class="form-control" placeholder="0000">
               </div>
-              <div></div>
-              <div class="field-error" th:errors="*{userPhoneFront}">
+              <div th:if="${#fields.hasErrors('userPhoneFront')}"></div>
+              <div class="field-error" th:if="${#fields.hasErrors('userPhoneFront')}"
+                   th:text="${#fields.errors('userPhoneFront')[0]}">
                 userPhoneFront 오류
               </div>
-              <div></div>
-              <div class="field-error" th:errors="*{userPhoneMiddle}">
+              <div th:if="${#fields.hasErrors('userPhoneMiddle')}"></div>
+              <div class="field-error" th:if="${#fields.hasErrors('userPhoneMiddle')}"
+                   th:text="${#fields.errors('userPhoneMiddle')[0]}">
                 userPhoneMiddle 오류
               </div>
-              <div></div>
-              <div class="field-error" th:errors="*{userPhoneBack}">
+              <div th:if="${#fields.hasErrors('userPhoneBack')}"></div>
+              <div class="field-error" th:if="${#fields.hasErrors('userPhoneBack')}"
+                   th:text="${#fields.errors('userPhoneBack')[0]}">
                 userPhoneBack 오류
               </div>
             </div>
@@ -166,7 +169,7 @@
               </label>
               <input type="text" th:field="*{hospitalName}"
                      th:errorclass="field-error" class="form-control" placeholder="소개할 병원 이름을 입력하세요">
-              <div></div>
+              <div th:if="${#fields.hasErrors('hospitalName')}"></div>
               <div class="field-error" th:errors="*{hospitalName}">
                 hospitalName 오류
               </div>
@@ -178,20 +181,21 @@
               </label>
               <div class="create__address">
                 <div class="create__address_search">
-                  <input type="text" th:field="*{hospitalZipCode}"
-                         th:errorclass="field-error" class="form-control" placeholder="우편번호를 입력하세요">
-                  <button type="button" class="btn btn--zipcode" onclick="location.href='/list'">우편번호 찾기</button>
+                  <input type="text" th:field="*{hospitalZipCode}" id="hospitalZipCode"
+                         th:errorclass="field-error" class="form-control" placeholder="우편번호를 입력하세요" readonly>
+                  <button type="button" class="btn btn--zipcode" onclick="sample4_execDaumPostcode()">우편번호 찾기</button>
                 </div>
-                <input type="text" th:field="*{hospitalAddress}"
-                       th:errorclass="field-error" class="form-control" placeholder="주소를 입력하세요">
+                <input type="text" th:field="*{hospitalAddress}" id="hospitalAddress"
+                       th:errorclass="field-error" class="form-control" placeholder="주소를 입력하세요" readonly>
 <!--                <input type="text" id="name" name="name" placeholder="상세주소를 입력하세요" required>-->
               </div>
-              <div></div>
+              <div th:if="${#fields.hasErrors('hospitalZipCode')}"></div>
               <div class="field-error" th:errors="*{hospitalZipCode}">
                 hospitalZipCode 오류
               </div>
-              <div></div>
-              <div class="field-error" th:errors="*{hospitalAddress}">
+              <div th:if="${#fields.hasErrors('hospitalAddress')}"></div>
+              <div class="field-error" th:if="${#fields.hasErrors('hospitalAddress')}"
+                   th:errors="*{hospitalAddress}">
                 hospitalAddress 오류
               </div>
             </div>
@@ -202,7 +206,7 @@
               </label>
               <input type="text" th:field="*{hospitalContactName}"
                      th:errorclass="field-error" class="form-control" placeholder="소개할 병원 담당자 이름을 입력하세요">
-              <div></div>
+              <div th:if="${#fields.hasErrors('hospitalContactName')}"></div>
               <div class="field-error" th:errors="*{hospitalContactName}">
                 hospitalContactName 오류
               </div>
@@ -217,21 +221,24 @@
                        th:errorclass="field-error" class="form-control" maxlength="3" placeholder="010">
                 <p>-</p>
                 <input type="tel" th:field="*{hospitalContactPhoneMiddle}"
-                       th:errorclass="field-error" class="form-control" maxlength="4" placeholder="1234">
+                       th:errorclass="field-error" class="form-control" maxlength="4" placeholder="0000">
                 <p>-</p>
                 <input type="tel" th:field="*{hospitalContactPhoneBack}"
-                       th:errorclass="field-error" class="form-control" maxlength="4" placeholder="5678">
+                       th:errorclass="field-error" class="form-control" maxlength="4" placeholder="0000">
               </div>
-              <div></div>
-              <div class="field-error" th:errors="*{hospitalContactPhoneFront}">
+              <div th:if="${#fields.hasErrors('hospitalContactPhoneFront')}"></div>
+              <div class="field-error" th:if="${#fields.hasErrors('hospitalContactPhoneFront')}"
+                   th:text="${#fields.errors('hospitalContactPhoneFront')[0]}">
                 hospitalContactPhoneFront 오류
               </div>
               <div th:if="${#fields.hasErrors('hospitalContactPhoneMiddle')}"></div>
-              <div class="field-error" th:errors="*{hospitalContactPhoneMiddle}">
+              <div class="field-error" th:if="${#fields.hasErrors('hospitalContactPhoneMiddle')}"
+                   th:text="${#fields.errors('hospitalContactPhoneMiddle')[0]}">
                 hospitalContactPhoneMiddle 오류
               </div>
-              <div></div>
-              <div class="field-error" th:errors="*{hospitalContactPhoneBack}">
+              <div th:if="${#fields.hasErrors('hospitalContactPhoneBack')}"></div>
+              <div class="field-error" th:if="${#fields.hasErrors('hospitalContactPhoneBack')}"
+                   th:text="${#fields.errors('hospitalContactPhoneBack')[0]}">
                 hospitalContactPhoneBack 오류
               </div>
             </div>
@@ -239,8 +246,8 @@
             <div class="form__row equipment-first">
               <label th:for="xrayCount">X-ray</label>
               <input type="text" th:field="*{xrayCount}"
-                     th:errorclass="field-error" class="form-control" placeholder="X-ray 대수">
-              <div></div>
+                     th:errorclass="field-error" class="form-control" placeholder="보유한 장비의 수량을 입력하세요">
+              <div th:if="${#fields.hasErrors('xrayCount')}"></div>
               <div class="field-error" th:errors="*{xrayCount}">
                 xrayCount 오류
               </div>
@@ -249,8 +256,8 @@
             <div class="form__row equipment">
               <label th:for="ctCount">CT</label>
               <input type="text" th:field="*{ctCount}"
-                     th:errorclass="field-error" class="form-control" placeholder="CT 대수">
-              <div></div>
+                     th:errorclass="field-error" class="form-control" placeholder="보유한 장비의 수량을 입력하세요">
+              <div th:if="${#fields.hasErrors('ctCount')}"></div>
               <div class="field-error" th:errors="*{ctCount}">
                 ctCount 오류
               </div>
@@ -259,8 +266,8 @@
             <div class="form__row equipment">
               <label th:for="mrCount">MR</label>
               <input type="text" th:field="*{mrCount}"
-                     th:errorclass="field-error" class="form-control" placeholder="MR 대수">
-              <div></div>
+                     th:errorclass="field-error" class="form-control" placeholder="보유한 장비의 수량을 입력하세요">
+              <div th:if="${#fields.hasErrors('mrCount')}"></div>
               <div class="field-error" th:errors="*{mrCount}">
                 mrCount 오류
               </div>
@@ -269,8 +276,8 @@
             <div class="form__row equipment-last">
               <label th:for="mgCount">MG</label>
               <input type="text" th:field="*{mgCount}"
-                     th:errorclass="field-error" class="form-control" placeholder="Mammography 대수">
-              <div></div>
+                     th:errorclass="field-error" class="form-control" placeholder="보유한 장비의 수량을 입력하세요">
+              <div th:if="${#fields.hasErrors('mgCount')}"></div>
               <div class="field-error" th:errors="*{mgCount}">
                 mgCount 오류
               </div>
@@ -283,9 +290,9 @@
 
             <div class="form__row">
               <label th:for="hospitalMemo">특이사항</label>
-              <input type="text" th:field="*{hospitalMemo}"
-                     th:errorclass="field-error" class="form-control" placeholder="특이사항을 입력하세요">
-              <div></div>
+              <textarea th:field="*{hospitalMemo}"
+                        th:errorclass="field-error" class="form-control" placeholder="특이사항을 입력하세요"></textarea>
+              <div th:if="${#fields.hasErrors('hospitalMemo')}"></div>
               <div class="field-error" th:errors="*{hospitalMemo}">
                 hospitalMemo 오류
               </div>
@@ -296,13 +303,39 @@
                 <span class="required">*</span>
               </label>
               <input type="text" th:field="*{userPassword}"
-                     th:errorclass="field-error" class="form-control" placeholder="비밀번호를 입력하세요">
+                     th:errorclass="field-error" class="form-control" placeholder="4자리 숫자를 입력하세요">
               <div></div>
-              <div class="field-error" th:errors="*{userPassword}">
+              <div class="password-notice">* 비밀번호는 작성하신 글 열람 시 사용됩니다.</div>
+
+              <div th:if="${#fields.hasErrors('userPassword')}"></div>
+              <div class="field-error" th:if="${#fields.hasErrors('userPassword')}"
+                   th:text="${#fields.errors('userPassword')[0]}">
                 userPassword 오류
               </div>
             </div>
 
+          </div>
+        </div>
+
+        <div class="form__agree">
+          <label class="form__agree-label" th:for="agreePersonalInfo">
+            개인정보수집동의
+            <span class="required">*</span>
+          </label>
+          <textarea th:field="*{agreePersonalInfo}" class="textarea__agree form-control" readonly>
+            개인정보 수집·이용에 관한 안내 내용
+          </textarea>
+          <div class="form-check">
+            <input type="checkbox" th:field="*{agreePersonalInfoCheck}"
+                   th:errorclass="field-error" class="form-check-input form-control"
+                   id="agreePersonalInfoCheck">
+            <label class="form__agree-label" th:for="agreePersonalInfoCheck">
+              개인정보 수집에 동의합니다.
+            </label>
+          </div>
+          <div class="field-error" th:if="${#fields.hasErrors('agreePersonalInfoCheck')}"
+               th:text="${#fields.errors('agreePersonalInfoCheck')[0]}">
+            agreePersonalInfoCheck 오류
           </div>
         </div>
 
@@ -336,5 +369,19 @@
     </div>
   </div>
 </footer>
+
+<!-- 우편번호 daum api -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+  function sample4_execDaumPostcode(){
+    new daum.Postcode({
+      oncomplete: function(data) {
+        document.getElementById("hospitalZipCode").value = data.zonecode;
+        document.getElementById("hospitalAddress").value = data.roadAddress;
+      }
+    }).open();
+  }
+</script>
+
 </body>
 </html>

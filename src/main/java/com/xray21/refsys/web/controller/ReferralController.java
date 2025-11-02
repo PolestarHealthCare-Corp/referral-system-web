@@ -44,13 +44,15 @@ public class ReferralController {
 
 	@PostMapping("/referrals/new")
 	public String create(@Validated @ModelAttribute("form") ReferralSaveRequest request, BindingResult bindingResult) {
-		referralService.saveReferral(request);
 
 		if (bindingResult.hasErrors()) {
 			log.info("errors = {}", bindingResult);
 //            model.addAttribute("errors", bindingResult); // bindingResult 은 자동으로 뷰에 넘어간다.
 			return "/referrals/createReferralForm";
 		}
+
+		log.info("저장됨");
+		referralService.saveReferral(request);
 		return "redirect:/";
 	}
 
