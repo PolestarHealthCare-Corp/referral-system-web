@@ -189,10 +189,18 @@ label .required {
   transform: scale(0.97);
 }
 
-@media (max-width: 620px) {
-  /* .search__row {
+@media (max-width: 640px) {
+  .form__row {
+    padding: 2em 0;
+    display: flex;
     flex-direction: column;
-    gap: 1em;
-    align-content: center;
-  } */
+  }
+
+  .form__row input[type="tel"] {
+    width: 50px;
+  }
+
+  .create__address_search input {
+    width: 80px;
+  }
 }

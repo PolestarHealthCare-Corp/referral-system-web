@@ -38,6 +38,7 @@
   display: inline-block;
   position: relative;
   font-size: var(--font-size-nav);
+  margin-left: 1.5em;
 }
 
 .header__nav-item a {

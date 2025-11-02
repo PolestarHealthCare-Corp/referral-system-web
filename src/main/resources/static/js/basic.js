@@ -84,25 +84,29 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-//무한 스크롤
-let lastId = 0;          // 마지막으로 로드한 referral의 ID
-let isLoading = false;   // 중복 요청 방지 플래그
-let hasMore = true;      // 더 불러올 데이터가 있는지 여부
+//슬라이드 처리
+let lastId = (() => {
+  const list = document.getElementById('referralList');
+  const items = list.querySelectorAll('li');
+  if (items.length === 0) return 0; // 데이터 없으면 0
+  const lastItemId = parseInt(items[items.length - 1].dataset.id, 10);
+  return isNaN(lastItemId) ? 0 : lastItemId; // NaN이면 0으로 처리
+})();
 
-console.log("스크롤 이벤트");
-console.log(lastId);
+let isLoading = false;
+let hasMore = true;
+
 async function loadReferrals() {
   if (isLoading || !hasMore) return;
   isLoading = true;
 
-  console.log("스크롤 이벤트2");
   try {
     const response = await fetch(`/api/v1/referrals?lastId=${lastId}&limit=10`);
     const data = await response.json();
 
     if (data.resultCode === 'SUCCESS' && data.result.length > 0) {
       renderReferrals(data.result);
-      lastId = data.result[data.result.length - 1].referralId; // 마지막 ID 갱신
+      lastId = data.result[data.result.length - 1].referralId;
     } else {
       hasMore = false; // 더 이상 데이터 없음
     }
@@ -118,6 +122,7 @@ function renderReferrals(referrals) {
   referrals.forEach(ref => {
     const li = document.createElement('li');
     li.classList.add('referral__content');
+    li.dataset.id = ref.referralId;
     li.innerHTML = `
       <a href="/referrals/${ref.referralId}">
         <div class="referral__row">
@@ -138,19 +143,13 @@ function renderReferrals(referrals) {
   });
 }
 
-// 스크롤 이벤트 감지
+// 스크롤 감지
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
   const scrollHeight = document.documentElement.scrollHeight;
   const clientHeight = window.innerHeight;
 
-  // 거의 맨 아래일 때
   if (scrollTop + clientHeight >= scrollHeight - 200) {
     loadReferrals();
   }
 });
-
-// 초기 로드
-// document.addEventListener('DOMContentLoaded', () => {
-//   loadReferrals();
-// });

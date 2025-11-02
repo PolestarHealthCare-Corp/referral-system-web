@@ -2,6 +2,7 @@ package com.xray21.refsys.web.controller;
 
 import com.xray21.refsys.web.dto.request.ReferralSaveRequest;
 import com.xray21.refsys.web.dto.response.ReferralListResponse;
+import com.xray21.refsys.web.dto.response.ReferralResponse;
 import com.xray21.refsys.web.service.ReferralService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,12 +29,9 @@ public class ReferralController {
 	@RequestMapping("/")
 	public String home(Model model) {
 
-		//총 카운트 필요
-		//새로 고침 누르면 아래의 서비스 로직
 		List<ReferralListResponse> referrals = referralService.findInitialReferrals();
 		model.addAttribute("referrals", referrals);
 		return "/index";
-//		return "/home";
 	}
 
 	@GetMapping("/referrals/new")
@@ -54,6 +53,15 @@ public class ReferralController {
 		log.info("저장됨");
 		referralService.saveReferral(request);
 		return "redirect:/";
+	}
+
+	@GetMapping("/referrals/{id}")
+	public String referralDetail(@PathVariable("id") Long id, Model model) {
+
+		ReferralResponse referral = referralService.findByReferralId(id);
+
+		model.addAttribute("referral", referral);
+		return "/referrals/referralDetail";
 	}
 
 }
