@@ -9,10 +9,10 @@ window.addEventListener('scroll', function () {
 });
 
 //홈으로 이동
-const backBtn = document.getElementById('backHome');
-backBtn.addEventListener('click', () => {
-  window.location.href = '/';
-});
+// const backBtn = document.getElementById('backHome');
+// backBtn.addEventListener('click', () => {
+//   window.location.href = '/';
+// });
 
 //조건 검색
 document.addEventListener('DOMContentLoaded', function() {
@@ -21,64 +21,67 @@ document.addEventListener('DOMContentLoaded', function() {
   const userPhoneInput = document.getElementById('userPhone');
   const listContainer = document.querySelector('.referral__list');
 
-  console.log("검색 시작");
-  searchBtn.addEventListener('click', function() {
-    const userName = userNameInput.value;
-    const userPhone = userPhoneInput.value;
-    console.log("클릭");
+  if (searchBtn) {
+    searchBtn.addEventListener('click', function () {
+      const userName = userNameInput.value;
+      const userPhone = userPhoneInput.value;
+      console.log("main 페이지 - 조건 검색 동작");
 
-    fetch(`/api/v1/referrals?userName=${encodeURIComponent(userName)}&userPhone=${encodeURIComponent(userPhone)}`)
-    .then(res => res.json())
-    .then(data => {
-      // resultCode 체크
-      if (data.resultCode !== "SUCCESS") {
-        alert('조회 실패');
-        return;
-      }
+      fetch(`/api/v1/referrals?userName=${encodeURIComponent(
+          userName)}&userPhone=${encodeURIComponent(userPhone)}`)
+      .then(res => res.json())
+      .then(data => {
+        // resultCode 체크
+        if (data.resultCode !== "SUCCESS") {
+          alert('main 페이지 - 조건 검색 실패');
+          return;
+        }
 
-      const referrals = data.result;
-      console.log(referrals);
+        const referrals = data.result;
+        // console.log(referrals);
 
-      // 기존 리스트 초기화
-      listContainer.innerHTML = '';
+        // 기존 리스트 초기화
+        listContainer.innerHTML = '';
 
-      // 리스트 없으면 안내
-      if (!referrals || referrals.length === 0) {
-        listContainer.innerHTML = '<li>조회된 결과가 없습니다.</li>';
-        return;
-      }
+        // 리스트 없으면 안내
+        if (!referrals || referrals.length === 0) {
+          listContainer.innerHTML = '<li>조회된 결과가 없습니다.</li>';
+          return;
+        }
 
-      // 리스트 생성
-      referrals.forEach(referral => {
-        const li = document.createElement('li');
-        li.className = 'referral__content';
-        li.id = `referral-${referral.referralId}`;
+        // 리스트 생성
+        referrals.forEach(referral => {
+          const li = document.createElement('li');
+          li.className = 'referral__content';
+          li.id = `referral-${referral.referralId}`;
 
-        li.innerHTML = `
-                              <a href="/referrals/${referral.referralId}">
-                                  <div class="referral__row">
-                                      <div class="referral__row__left">
-                                          <strong>${referral.hospitalName}</strong>
-                                          <div class="referral__equipment">
-                                              ${referral.equipmentList.map(equip => `<span>${equip}</span>`).join('')}
-                                          </div>
-                                      </div>
-                                      <div class="referral__row__right">
-                                          <span class="referral__tag">${referral.hospitalAddress}</span>
-                                          <span class="referral__tag">${referral.elapsedTime}</span>
-                                      </div>
-                                  </div>
-                              </a>
-                          `;
+          li.innerHTML = `
+                                <a href="/referrals/${referral.referralId}">
+                                    <div class="referral__row">
+                                        <div class="referral__row__left">
+                                            <strong>${referral.hospitalName}</strong>
+                                            <div class="referral__equipment">
+                                                ${referral.equipmentList.map(
+              equip => `<span>${equip}</span>`).join('')}
+                                            </div>
+                                        </div>
+                                        <div class="referral__row__right">
+                                            <span class="referral__tag">${referral.hospitalAddress}</span>
+                                            <span class="referral__tag">${referral.elapsedTime}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            `;
 
-        listContainer.appendChild(li);
+          listContainer.appendChild(li);
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        alert('main 페이지 - 조건 검색 API 호출 실패');
       });
-    })
-    .catch(err => {
-      console.error(err);
-      alert('API 호출 실패');
     });
-  });
+  }
 });
 
 //무한 스크롤

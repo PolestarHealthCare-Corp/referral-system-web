@@ -44,10 +44,10 @@ public class Referral {
 		this.hospitalAddress = request.getHospitalAddress();
 		this.hospitalContactName = request.getHospitalContactName();
 		this.hospitalContactPhone = request.getHospitalContactPhoneFront()+request.getHospitalContactPhoneMiddle()+request.getHospitalContactPhoneBack();
-		this.xrayCount = request.getXrayCount();
-		this.ctCount = request.getCtCount();
-		this.mrCount = request.getMrCount();
-		this.mgCount = request.getMgCount();
+		this.xrayCount = (request.getXrayCount() != null) ? request.getXrayCount() : 0;
+		this.ctCount = (request.getCtCount() != null) ? request.getCtCount() : 0;
+		this.mrCount = (request.getMrCount() != null) ? request.getMrCount() : 0;
+		this.mgCount = (request.getMgCount() != null) ? request.getMgCount() : 0;
 		this.hospitalMemo = request.getHospitalMemo();
 		this.approvalType = AppConstants.RECEIVED;
 		this.useYn = AppConstants.USE;
