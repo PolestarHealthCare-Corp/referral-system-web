@@ -6,8 +6,8 @@
 </head>
 <body>
 <h1>파일 첨부</h1>
-<form action="/upload" method="post">
-<input id="fileInput" type="file">
+<form action="/upload" method="post" enctype="multipart/form-data">
+<input id="fileInput" name="file" type="file">
 <h2>내가 선택한 파일 목록</h2>
 <ul id="fileList">파일리스트</ul>
 <button type="submit">업로드하기</button>
