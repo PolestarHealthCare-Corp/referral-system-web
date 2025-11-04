@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>파일첨부테스트</title>
 </head>
 <body>
 <h1>파일 첨부</h1>
-<form action="/upload" method="post" enctype="multipart/form-data">
-<input id="fileInput" name="file" type="file">
-<h2>내가 선택한 파일 목록</h2>
-<ul id="fileList">파일리스트</ul>
-<button type="submit">업로드하기</button>
+<form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+<input id="fileInput" name="file" type="file" multiple>
+<button type="submit">파일업로드하기</button>
+<hr>
+<button>업로드한 사진 확인</button>
 </form>
 
 <!--자바스크립트-->

@@ -1,4 +1,7 @@
 spring:
+  web:
+    resources:
+      static-locations: file:///C:/download/
   messages:
     basename: errors
 #  H2
