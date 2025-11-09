@@ -94,6 +94,11 @@
 
     <div class="create__form">
       <form role="form" action="/referrals/new" th:object="${form}" method="post">
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+          <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+        </div>
+
         <div class="create__form-row">
           <strong class="section__subtitle">
             작성자 정보

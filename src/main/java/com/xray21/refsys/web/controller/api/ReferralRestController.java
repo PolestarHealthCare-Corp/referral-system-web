@@ -49,17 +49,17 @@ public class ReferralRestController {
     }
 
     //병원소개 조건검색
-    @GetMapping
-    public ResponseEntity<Response<List<ReferralListResponse>>> findReferrals(
-            @RequestParam(required = false) String userName,
-            @RequestParam(required = false) String userPhone,
-            @RequestParam(required = false) Long lastId,
-            @RequestParam(defaultValue = "10") int limit) {
-
-        log.info("조건검색함");
-        List<ReferralListResponse> results = referralService.findAllByCondition(userName, userPhone, lastId, limit);
-        return ResponseEntity.ok().body(Response.success(results));
-    }
+//    @GetMapping
+//    public ResponseEntity<Response<List<ReferralListResponse>>> findReferrals(
+//            @RequestParam(required = false) String userName,
+//            @RequestParam(required = false) String userPhone,
+//            @RequestParam(required = false) Long lastId,
+//            @RequestParam(defaultValue = "10") int limit) {
+//
+//        log.info("조건검색함");
+//        List<ReferralListResponse> results = referralService.findAllByCondition(userName, userPhone, lastId, limit);
+//        return ResponseEntity.ok().body(Response.success(results));
+//    }
 
     //새로고침 버튼 클릭하여 소개 조건 리스트 초기화
     @GetMapping("/initial")

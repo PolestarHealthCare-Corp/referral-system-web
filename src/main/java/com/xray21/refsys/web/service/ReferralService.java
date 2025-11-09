@@ -10,85 +10,141 @@ import com.xray21.refsys.web.repository.ReferralRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.javassist.NotFoundException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import com.xray21.refsys.web.dto.request.ReferralUpdateRequest;
 
 import java.util.Optional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 
 /**
  *
- * saveReferral     : 소개 작성
- * updateReferral   : 소개 수정
+ * saveReferral         : 소개 등록
+ * findByReferralId     : 소개 단건 조회
+ * findInitialReferrals : 최신 등록된 병원소개 10개 리스트 조회
+ * updateReferral       : 소개 수정
  *
  */
 
 
 @Service
-@Transactional(readOnly = true)
 @Slf4j
 public class ReferralService {
 
+    private final PlatformTransactionManager transactionManager;
     private final ReferralRepository referralRepository;
 
-    public ReferralService(ReferralRepository referralRepository) {
+    public ReferralService(PlatformTransactionManager transactionManager, ReferralRepository referralRepository) {
+        this.transactionManager = transactionManager;
         this.referralRepository = referralRepository;
     }
 
     //소개 등록
-    @Transactional
     public ReferralSaveResponse saveReferral(ReferralSaveRequest request) {
 
-        //작성자가 이미 소개한 병원인지 확인
-//        existsByUserAndHospital(request);
+        TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 
+        //병원소개 생성
         Referral referral = Referral.createReferral(request);
 
-        Referral savedReferral = referralRepository.saveReferral(referral);
-        return ReferralSaveResponse.from(savedReferral);
-    }
+        try {
+            //작성자가 이미 등록한 병원인지 중복체크 //국립중앙의료원_전국 병·의원 찾기 서비스 사용 고려중
+            existsByUserAndHospital(referral.getUserPhone(), request.getHospitalName());
 
-//    private void existsByUserAndHospital(ReferralSaveRequest request) {
-//        int exists = referralRepository.existsByUserPhoneAndHospitalName(request.getUserPhone(),
-//                request.getHospitalName());
-//        if (exists == 1) {
-//            log.error("작성자({}) 이미 소개한 병원({})입니다.", request.getUserPhone(), request.getHospitalName());
-//            throw new IllegalStateException("이미 소개해주신 병원입니다. 소개 작성 내역을 확인해주세요.");
-//        }
-//    }
+            //병원소개 저장
+            Referral savedReferral = referralRepository.saveReferral(referral);
+
+            transactionManager.commit(status);
+            return ReferralSaveResponse.from(savedReferral);
+
+        } catch (IllegalStateException e) {
+            log.warn("병원소개 중복 저장 시도: {}", e.getMessage());
+            transactionManager.rollback(status);
+
+            //중복된 병원 체크 -> 소개이력 확인 안내
+            ReferralSaveResponse response = ReferralSaveResponse.from(referral);
+            response.DuplicatedUserAndHospital();
+            return response;
+
+        } catch (DataAccessException e) {
+            log.error("DB 접근 실패: {}", e.getMessage());
+            transactionManager.rollback(status);
+            throw new RuntimeException("데이터베이스 오류가 발생했습니다.", e);
+
+        } catch (IllegalArgumentException e) {
+            log.warn("입력값 오류: {}", e.getMessage());
+            transactionManager.rollback(status);
+            throw new RuntimeException("입력값이 올바르지 않습니다.", e);
+
+        } catch (Exception e) {
+            log.error("병원소개 저장 중 알 수 없는 에러 발생");
+            transactionManager.rollback(status);
+            throw new RuntimeException("시스템 오류가 발생했습니다. 관리자에게 문의하세요.", e);
+        }
+
+    }
+    private void existsByUserAndHospital(String userPhone, String hospitalName) {
+        int exists = referralRepository.existsByUserPhoneAndHospitalName(userPhone, hospitalName);
+        if (exists == 1) {
+            throw new IllegalStateException("작성자(" + userPhone + ")가 이미 소개한 병원(" +hospitalName+ ")입니다.");
+        }
+    }
 
     //소개 단건 조회
     public ReferralResponse findByReferralId(Long referralId) {
 
-        Referral findReferral = referralRepository.findById(referralId)
-                .orElseThrow(() -> new IllegalArgumentException("referralId(" + referralId + ") not found"));
-        return ReferralResponse.from(findReferral);
+        try {
+            //병원소개 단건 조회
+            Referral findReferral = referralRepository.findById(referralId)
+                    .orElseThrow(() -> new NotFoundException("등록되지 않은 소개(" + referralId + ") 입니다."));
+            return ReferralResponse.from(findReferral);
+
+        } catch (NotFoundException e) {
+            log.error("등록되지 않은 병원소개 조회: {}", e.getMessage());
+            throw new RuntimeException(e.getMessage(), e);
+
+        } catch (DataAccessException e) {
+            log.error("DB 접근 실패: {}", e.getMessage());
+            throw new RuntimeException("데이터베이스 오류가 발생했습니다.", e);
+
+        } catch (Exception e) {
+            log.error("병원소개 단건 조회 중 알 수 없는 에러 발생");
+            throw new RuntimeException("시스템 오류가 발생했습니다. 관리자에게 문의하세요.", e);
+        }
+
     }
 
-    //최신 등록된 소개 10개 리스트 조회
+    //최신 등록된 병원소개 10개 리스트 조회
     public List<ReferralListResponse> findInitialReferrals() {
 
-        ReferralSearchCond referralSearchCond = ReferralSearchCond.createReferralSearchCond("", "", null, 10);
+        try {
+            //검색 조건 생성
+            ReferralSearchCond referralSearchCond = ReferralSearchCond.createReferralSearchCond("", "", null, 10);
 
-        List<Referral> referrals = referralRepository.findAllByCondition(referralSearchCond);
-//        log.info("조회 결과 : ID:{} 부터 {}건", cond.getLastId(), referrals.size());
-        return referrals.stream()
-                .map(ReferralListResponse::from)
-                .collect(Collectors.toList());
-    }
+            //병원소개 리스트 조회
+            List<Referral> referrals = referralRepository.findAllByCondition(referralSearchCond);
+            return referrals.stream()
+                    .map(ReferralListResponse::from)
+                    .collect(Collectors.toList());
 
+        } catch (IllegalArgumentException e) {
+            log.error("병원소개 리스트 조회 실패: {}", e.getMessage());
+            throw new RuntimeException(e.getMessage(), e);
 
-    //소개 조건 검색
-    public List<ReferralListResponse> findAllByCondition(String userName, String userPhone, Long lastId, int limit) {
+        } catch (DataAccessException e) {
+            log.error("DB 접근 실패: {}", e.getMessage());
+            throw new RuntimeException("데이터베이스 오류가 발생했습니다.", e);
 
-        ReferralSearchCond referralSearchCond = ReferralSearchCond.createReferralSearchCond(userName, userPhone, lastId, limit);
+        } catch (Exception e) {
+            log.error("병원소개 리스트조회 중 알 수 없는 에러 발생");
+            throw new RuntimeException("시스템 오류가 발생했습니다. 관리자에게 문의하세요.", e);
+        }
 
-        List<Referral> referrals = referralRepository.findAllByCondition(referralSearchCond);
-//        log.info("조회 결과 : ID:{} 부터 {}건", cond.getLastId(), referrals.size());
-        return referrals.stream()
-                .map(ReferralListResponse::from)
-                .collect(Collectors.toList());
     }
 
     // 소개 수정

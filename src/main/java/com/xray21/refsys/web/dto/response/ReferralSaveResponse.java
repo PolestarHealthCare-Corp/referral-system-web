@@ -9,6 +9,7 @@ public class ReferralSaveResponse {
 	private String userPhone;
 	private String hospitalName;
 	private LocalDateTime createDateTime;
+	private boolean duplicatedHospital = false;
 
 	public static ReferralSaveResponse from(Referral referral) {
 		return new ReferralSaveResponse(referral.getReferralId(), referral.getUserPhone(), referral.getHospitalName(),
@@ -21,6 +22,10 @@ public class ReferralSaveResponse {
 		this.userPhone = userPhone;
 		this.hospitalName = hospitalName;
 		this.createDateTime = createDateTime;
+	}
+
+	public void DuplicatedUserAndHospital() {
+		this.duplicatedHospital = true;
 	}
 
 	public Long getReferralId() {
@@ -37,5 +42,9 @@ public class ReferralSaveResponse {
 
 	public LocalDateTime getCreateDateTime() {
 		return createDateTime;
+	}
+
+	public boolean isDuplicatedHospital() {
+		return duplicatedHospital;
 	}
 }

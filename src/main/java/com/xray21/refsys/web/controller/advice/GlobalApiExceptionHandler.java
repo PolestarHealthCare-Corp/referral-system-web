@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice(basePackages = "com.xray21.refsys.web.controller.api")
 @Slf4j
-public class ControllerAdvice {
+public class GlobalApiExceptionHandler {
 
 	// IllegalArgumentException
 	@ExceptionHandler(IllegalArgumentException.class)
@@ -54,6 +54,15 @@ public class ControllerAdvice {
 	@ExceptionHandler(java.sql.SQLException.class)
 	public ResponseEntity<Response> handleSQLException(java.sql.SQLException e) {
 		log.error("[ExceptionHandler] SQLException", e);
+		return ResponseEntity
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(Response.error(ErrorResponse.from(e)));
+	}
+
+	// RuntimeException
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<Response> handleRuntimeException(RuntimeException e) {
+		log.error("[ExceptionHandler] RuntimeException", e);
 		return ResponseEntity
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(Response.error(ErrorResponse.from(e)));

@@ -3,6 +3,7 @@ package com.xray21.refsys.web.controller;
 import com.xray21.refsys.web.dto.request.ReferralSaveRequest;
 import com.xray21.refsys.web.dto.response.ReferralListResponse;
 import com.xray21.refsys.web.dto.response.ReferralResponse;
+import com.xray21.refsys.web.dto.response.ReferralSaveResponse;
 import com.xray21.refsys.web.service.ReferralService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -46,12 +47,17 @@ public class ReferralController {
 
 		if (bindingResult.hasErrors()) {
 			log.info("errors = {}", bindingResult);
-//            model.addAttribute("errors", bindingResult); // bindingResult 은 자동으로 뷰에 넘어간다.
 			return "/referrals/createReferralForm";
 		}
 
-		log.info("저장됨");
-		referralService.saveReferral(request);
+		ReferralSaveResponse response = referralService.saveReferral(request);
+
+		if (response.isDuplicatedHospital()) {
+			bindingResult.reject("duplicatedHospital", "이미 등록한 병원입니다. 작성하신 소개내역을 확인해주세요.");
+			log.info("errors = {}", bindingResult);
+			return "referrals/createReferralForm";
+		}
+
 		return "redirect:/";
 	}
 
