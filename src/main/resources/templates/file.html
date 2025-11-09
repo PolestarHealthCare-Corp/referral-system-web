@@ -10,9 +10,13 @@
 <input id="fileInput" name="file" type="file" multiple>
 <button type="submit">파일업로드하기</button>
 <hr>
-<button>업로드한 사진 확인</button>
 </form>
-
+<h2>업로드한 파일 목록</h2>
+<ul class="file-list">
+    <li th:each="file : ${files}" class="file-item">
+        <a th:href="@{'/download?filename=' +${file}}" th:text="${file}" download></a>
+    </li>
+</ul>
 <!--자바스크립트-->
 <!--<script>-->
 <!--    const fileInput = document.getElementById("fileInput");-->
