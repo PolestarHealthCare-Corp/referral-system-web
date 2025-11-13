@@ -35,14 +35,14 @@ public class ReferralController {
 		return "index";
 	}
 
-	@GetMapping("/referrals/new")
+	@GetMapping("referrals/new")
 	public String createForm(Model model) {
 
 		model.addAttribute("form", new ReferralSaveRequest());
 		return "referrals/createReferralForm";
 	}
 
-	@PostMapping("/referrals/new")
+	@PostMapping("referrals/new")
 	public String create(@Validated @ModelAttribute("form") ReferralSaveRequest request, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
