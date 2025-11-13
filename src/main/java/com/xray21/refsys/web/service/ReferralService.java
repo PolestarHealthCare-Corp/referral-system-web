@@ -35,6 +35,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 @Service
 @Slf4j
 public class ReferralService {
+    
 
     private final PlatformTransactionManager transactionManager;
     private final ReferralRepository referralRepository;
@@ -47,29 +48,28 @@ public class ReferralService {
     //소개 등록
     public ReferralSaveResponse saveReferral(ReferralSaveRequest request) {
 
-        TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
-
         //병원소개 생성
         Referral referral = Referral.createReferral(request);
 
+        //작성자가 이미 등록한 병원인지 중복체크 //국립중앙의료원_전국 병·의원 찾기 서비스 사용 고려중
+        int exists = existsByUserAndHospital(referral.getUserPhone(), request.getHospitalName());
+
+        if (exists == 1) {
+            //중복된 병원 체크 -> 소개이력 확인 안내
+            ReferralSaveResponse response = ReferralSaveResponse.from(referral);
+            response.DuplicatedUserAndHospital();
+            return response;
+        }
+
+        TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+
         try {
-            //작성자가 이미 등록한 병원인지 중복체크 //국립중앙의료원_전국 병·의원 찾기 서비스 사용 고려중
-            existsByUserAndHospital(referral.getUserPhone(), request.getHospitalName());
 
             //병원소개 저장
             Referral savedReferral = referralRepository.saveReferral(referral);
 
             transactionManager.commit(status);
             return ReferralSaveResponse.from(savedReferral);
-
-        } catch (IllegalStateException e) {
-            log.warn("병원소개 중복 저장 시도: {}", e.getMessage());
-            transactionManager.rollback(status);
-
-            //중복된 병원 체크 -> 소개이력 확인 안내
-            ReferralSaveResponse response = ReferralSaveResponse.from(referral);
-            response.DuplicatedUserAndHospital();
-            return response;
 
         } catch (DataAccessException e) {
             log.error("DB 접근 실패: {}", e.getMessage());
@@ -88,11 +88,9 @@ public class ReferralService {
         }
 
     }
-    private void existsByUserAndHospital(String userPhone, String hospitalName) {
+    private int existsByUserAndHospital(String userPhone, String hospitalName) {
         int exists = referralRepository.existsByUserPhoneAndHospitalName(userPhone, hospitalName);
-        if (exists == 1) {
-            throw new IllegalStateException("작성자(" + userPhone + ")가 이미 소개한 병원(" +hospitalName+ ")입니다.");
-        }
+        return exists;
     }
 
     //소개 단건 조회
