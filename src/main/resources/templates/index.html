@@ -76,7 +76,7 @@
     <nav class="header__nav">
       <ul>
         <li class="header__nav-item">
-          <a th:href="@{/referrals/new}">병원 소개 작성</a>
+          <a th:href="@{referrals/new}">병원 소개 작성</a>
         </li>
 <!--        <li class="header__nav-item">-->
 <!--          <a href="#html">소개 내역</a>-->
@@ -132,7 +132,7 @@
       <ul id="referralList" class="referral__list">
         <li class="referral__content" th:each="referral : ${referrals}" th:id="'referral-' + ${referral.referralId}">
 <!--          링크 나중에 수정-->
-          <a th:href="@{'/referrals/' + ${referral.referralId}}">
+          <a th:href="@{'referrals/' + ${referral.referralId}}">
             <div class="referral__row">
               <div class="referral__row__left">
                 <strong th:text="${referral.hospitalName}">병원명</strong>

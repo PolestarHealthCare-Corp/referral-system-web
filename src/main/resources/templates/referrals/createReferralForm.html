@@ -93,7 +93,7 @@
     </header>
 
     <div class="create__form">
-      <form role="form" action="/referrals/new" th:object="${form}" method="post">
+      <form role="form" action="referrals/new" th:object="${form}" method="post">
 
         <div th:if="${#fields.hasGlobalErrors()}">
           <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
