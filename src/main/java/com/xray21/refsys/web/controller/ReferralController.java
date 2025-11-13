@@ -32,14 +32,14 @@ public class ReferralController {
 
 		List<ReferralListResponse> referrals = referralService.findInitialReferrals();
 		model.addAttribute("referrals", referrals);
-		return "/index";
+		return "index";
 	}
 
 	@GetMapping("/referrals/new")
 	public String createForm(Model model) {
 
 		model.addAttribute("form", new ReferralSaveRequest());
-		return "/referrals/createReferralForm";
+		return "referrals/createReferralForm";
 	}
 
 	@PostMapping("/referrals/new")
@@ -47,7 +47,7 @@ public class ReferralController {
 
 		if (bindingResult.hasErrors()) {
 			log.info("errors = {}", bindingResult);
-			return "/referrals/createReferralForm";
+			return "referrals/createReferralForm";
 		}
 
 		ReferralSaveResponse response = referralService.saveReferral(request);
@@ -67,7 +67,7 @@ public class ReferralController {
 		ReferralResponse referral = referralService.findByReferralId(id);
 
 		model.addAttribute("referral", referral);
-		return "/referrals/referralDetail";
+		return "referrals/referralDetail";
 	}
 
 }
